@@ -35,7 +35,7 @@ public class ElectionZoneController {
 
         if (districtRepository.findFirstByName(electionZoneDAO.getDistrictName()) == null){
 //            if it is null save district name
-//            if not get and save
+//            if not get and save both details
             DistrictModel districtModel=new DistrictModel();
             districtModel.setName(electionZoneDAO.getDistrictName());
             DistrictModel model = districtService.addDistrict(districtModel);
@@ -44,7 +44,7 @@ public class ElectionZoneController {
             electionZoneModel.setName(electionZoneDAO.getName());
             electionZoneModel.setDistrictModel(model);
             electionZoneService.addZone(electionZoneModel);
-            LOGGER.info("new Election zone added name as a "+electionZoneDAO.getDistrictName());
+            LOGGER.info("new Election zone added name as a "+electionZoneDAO.getName());
             return new ResponseEntity<>(new ApiResponse<>(electionZoneModel) , HttpStatus.OK);
 
         }else{
@@ -53,7 +53,7 @@ public class ElectionZoneController {
             ElectionZoneModel electionZoneModel = new ElectionZoneModel();
             electionZoneModel.setName(electionZoneDAO.getName());
             electionZoneModel.setDistrictModel(model);
-
+            LOGGER.info("new Election zone added name as a "+electionZoneDAO.getName());
             return new ResponseEntity<>(new ApiResponse<>(electionZoneService.addZone(electionZoneModel)) ,HttpStatus.OK);
 
         }

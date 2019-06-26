@@ -10,8 +10,9 @@ public class PartyModel {
     private int id;
 
     private String name;
-
-    private String color;
+    @OneToOne
+    @JoinColumn(name = "colour_id")
+    private PartyColourModel color;
 
     private String logoUrl;
 
@@ -34,11 +35,11 @@ public class PartyModel {
         this.name = name;
     }
 
-    public String getColor() {
+    public PartyColourModel getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(PartyColourModel color) {
         this.color = color;
     }
 
@@ -50,13 +51,5 @@ public class PartyModel {
         this.logoUrl = logoUrl;
     }
 
-    @Override
-    public String toString() {
-        return "PartyModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", color='" + color + '\'' +
-                ", logoUrl='" + logoUrl + '\'' +
-                '}';
-    }
+
 }

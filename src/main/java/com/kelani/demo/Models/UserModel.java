@@ -16,6 +16,8 @@ public class UserModel {
 
     private String firstName;
 
+    private int nicNo;
+
     private String lastName;
 
     private String voterId;
@@ -83,16 +85,13 @@ public class UserModel {
         this.imageUrl = imageUrl;
     }
 
-    @Override
-    public String toString() {
-        return "UserModel{" +
-                "id=" + id +
-                ", gsDivisionModel=" + gsDivisionModel +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", voterId='" + voterId + '\'' +
-                ", specificDetails='" + specificDetails + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                '}';
+    public int getNicNo() {
+        return nicNo;
     }
+
+    public void setNicNo(int nicNo) {
+        this.nicNo = nicNo;
+    }
+
+
 }

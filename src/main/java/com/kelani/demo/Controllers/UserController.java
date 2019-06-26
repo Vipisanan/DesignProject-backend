@@ -17,13 +17,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/")
-    public ResponseEntity<?> userModelGetAll(){
-        return new ResponseEntity<>(new ApiResponse<>( userService.findAll()) , HttpStatus.OK);
+    public ResponseEntity<?> userModelGetAll() {
+        return new ResponseEntity<>(new ApiResponse<>(userService.findAll()), HttpStatus.OK);
     }
 
     @PostMapping("/")
-    private ResponseEntity<?> save(@RequestPart String provinceName ,
-                                   @RequestBody UserModel userModel) throws Exception{
+    private ResponseEntity<?> save(@RequestBody UserModel userModel) throws Exception {
 
         return new ResponseEntity<>(new ApiResponse<>(userService.save(userModel)), HttpStatus.OK);
     }
