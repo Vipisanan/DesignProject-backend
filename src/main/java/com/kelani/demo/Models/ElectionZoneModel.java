@@ -11,7 +11,7 @@ public class ElectionZoneModel {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinTable(name = "district_id")
     private DistrictModel districtModel;
 

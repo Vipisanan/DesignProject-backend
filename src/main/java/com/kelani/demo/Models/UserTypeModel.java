@@ -13,7 +13,7 @@ public class UserTypeModel {
 
     private String type;
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private Set<UserModel> userModel;
 

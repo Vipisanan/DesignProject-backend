@@ -11,7 +11,7 @@ public class VoterModel {
 
     private String password;
 
-    @OneToOne
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinColumn(name = "user_id")
     private UserModel userModel;
 

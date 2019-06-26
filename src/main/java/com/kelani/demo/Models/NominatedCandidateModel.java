@@ -10,11 +10,11 @@ public class NominatedCandidateModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinColumn(name = "nominated_party_id")
     private NominatedPartyModel nominatedPartyModel;
 
-    @OneToOne
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinColumn(name = "candidate_id")
     private CandidateModel candidateModel;
 

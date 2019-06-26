@@ -12,7 +12,7 @@ public class FingerPrintModel {
 
     private String fingerprint;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinColumn(name = "user_id")
     private UserModel userModel;
 

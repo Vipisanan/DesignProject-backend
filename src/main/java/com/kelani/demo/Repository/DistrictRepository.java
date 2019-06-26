@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface DistrictRepository extends JpaRepository<DistrictModel , Integer> {
 
     DistrictModel findFirstByName(String s);
+    DistrictModel findFirstById(int id);
 }

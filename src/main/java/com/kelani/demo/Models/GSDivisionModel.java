@@ -12,7 +12,7 @@ public class GSDivisionModel {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinTable(name = "election_zone_id")
     private ElectionZoneModel electionZoneModel;
 

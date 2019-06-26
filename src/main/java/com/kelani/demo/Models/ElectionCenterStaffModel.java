@@ -10,7 +10,7 @@ public class ElectionCenterStaffModel {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinColumn(name = "election_center_id")
     private ElectionCenterModel  electionCenterModel;
 

@@ -10,7 +10,7 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinTable(name = "gs_division_id")
     private GSDivisionModel gsDivisionModel;
 

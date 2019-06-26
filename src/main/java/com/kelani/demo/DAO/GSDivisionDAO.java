@@ -1,6 +1,7 @@
 package com.kelani.demo.DAO;
 
 public class GSDivisionDAO {
+
     private String name;
 
     private String zoneName;

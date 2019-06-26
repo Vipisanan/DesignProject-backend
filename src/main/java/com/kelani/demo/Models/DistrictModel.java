@@ -1,5 +1,6 @@
 package com.kelani.demo.Models;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +12,7 @@ public class DistrictModel {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinTable(name = "pro_id")
     private ProvinceModel provinceModel;
 

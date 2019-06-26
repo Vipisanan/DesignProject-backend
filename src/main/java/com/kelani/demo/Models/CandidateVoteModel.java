@@ -10,7 +10,7 @@ public class CandidateVoteModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinColumn(name = "party_vote")
     private PartyVoteModel partyVoteModel;
 

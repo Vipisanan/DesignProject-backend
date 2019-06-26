@@ -10,7 +10,7 @@ public class CandidateModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinTable(name = "party_id")
     private PartyModel partyModel;
 

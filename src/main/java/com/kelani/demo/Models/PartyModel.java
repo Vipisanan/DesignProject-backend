@@ -10,7 +10,7 @@ public class PartyModel {
     private int id;
 
     private String name;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "colour_id")
     private PartyColourModel color;
 

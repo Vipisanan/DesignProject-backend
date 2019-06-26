@@ -11,7 +11,7 @@ public class ElectionModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToOne
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
     @JoinTable(name = "type_id  ")
     private ElectionTypeModel electionTypeModel;
 
