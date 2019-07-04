@@ -28,12 +28,10 @@ public class UserModel {
     @UniqueElements
     private int nicNo;
 
-    @UniqueElements
-    private String votetId;
+//    @UniqueElements
+//    private String votetId;
 
     private String lastName;
-
-    private String voterId;
 
     private String specificDetails;
 
@@ -84,13 +82,6 @@ public class UserModel {
         this.lastName = lastName;
     }
 
-    public String getVoterId() {
-        return voterId;
-    }
-
-    public void setVoterId(String voterId) {
-        this.voterId = voterId;
-    }
 
     public String getSpecificDetails() {
         return specificDetails;
@@ -116,11 +107,4 @@ public class UserModel {
         this.nicNo = nicNo;
     }
 
-    public String getVotetId() {
-        return votetId;
-    }
-
-    public void setVotetId(String votetId) {
-        this.votetId = votetId;
-    }
-}
+   }
