@@ -10,12 +10,17 @@ public class ProvinceModel {
 
     @Id
 //    @Column(name="p_id",updatable=false, insertable = false ,nullable=false)
-    @GeneratedValue(strategy =  GenerationType.IDENTITY , generator = "native")
+//    @GeneratedValue(strategy =  GenerationType.IDENTITY , generator = "native")
     private int id;
 
     private String provinceName;
 
     public ProvinceModel() {
+    }
+
+    public ProvinceModel(int id, String provinceName) {
+        this.id = id;
+        this.provinceName = provinceName;
     }
 
     public ProvinceModel(String provinceName) {

@@ -1,23 +1,34 @@
 package com.kelani.demo.Models;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_type")
 public class UserTypeModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String type;
 
-    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private Set<UserModel> userModel;
+//    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+//    private Set<UserModel> userModel;
+
 
     public UserTypeModel() {
+    }
+
+    public UserTypeModel(int id, String type) {
+        this.id = id;
+        this.type = type;
+    }
+
+    public UserTypeModel(String type) {
+        this.type = type;
     }
 
     public int getId() {
@@ -34,13 +45,5 @@ public class UserTypeModel {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Set<UserModel> getUserModel() {
-        return userModel;
-    }
-
-    public void setUserModel(Set<UserModel> userModel) {
-        this.userModel = userModel;
     }
 }

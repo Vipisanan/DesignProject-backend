@@ -1,6 +1,7 @@
 package com.kelani.demo.Models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -13,6 +14,10 @@ public class UserModel {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinTable(name = "gs_division_id")
     private GSDivisionModel gsDivisionModel;
+
+    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name = "role_id")
+    private Set<UserTypeModel> userTypeModels;
 
     private String firstName;
 
@@ -27,7 +32,16 @@ public class UserModel {
     private String imageUrl;
 
 
+
     public UserModel() {
+    }
+
+    public Set<UserTypeModel> getUserTypeModels() {
+        return userTypeModels;
+    }
+
+    public void setUserTypeModels(Set<UserTypeModel> userTypeModels) {
+        this.userTypeModels = userTypeModels;
     }
 
     public int getId() {

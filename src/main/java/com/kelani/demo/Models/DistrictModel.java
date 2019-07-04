@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "district")
 public class DistrictModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
@@ -17,6 +17,12 @@ public class DistrictModel {
     private ProvinceModel provinceModel;
 
     public DistrictModel() {
+    }
+
+    public DistrictModel(int id, String name, ProvinceModel provinceModel) {
+        this.id = id;
+        this.name = name;
+        this.provinceModel = provinceModel;
     }
 
     public int getId() {
