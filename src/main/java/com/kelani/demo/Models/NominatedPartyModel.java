@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class NominatedPartyModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)

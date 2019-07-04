@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "election_zone")
 public class ElectionZoneModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class UserModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
@@ -25,6 +25,7 @@ public class UserModel {
     private String specificDetails;
 
     private String imageUrl;
+
 
     public UserModel() {
     }

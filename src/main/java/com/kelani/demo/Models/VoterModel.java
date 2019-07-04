@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "voter")
 public class VoterModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String password;

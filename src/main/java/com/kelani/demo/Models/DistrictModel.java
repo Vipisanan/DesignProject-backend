@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "district")
 public class DistrictModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;

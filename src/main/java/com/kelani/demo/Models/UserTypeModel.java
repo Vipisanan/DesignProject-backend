@@ -8,7 +8,7 @@ import java.util.Set;
 public class UserTypeModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String type;
