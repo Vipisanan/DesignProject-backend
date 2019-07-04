@@ -19,4 +19,8 @@ public class GSDivisionService {
         gsDivisionRepository.save(gsDivisionModels);
         return gsDivisionModels;
     }
+
+    public List<GSDivisionModel> getAll() {
+        return gsDivisionRepository.findAll();
+    }
 }

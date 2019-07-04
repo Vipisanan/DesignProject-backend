@@ -17,4 +17,8 @@ public class ProvinceService {
         provinceRepository.saveAll(provinceModelList);
         return provinceModelList;
     }
+
+    public List<ProvinceModel> geAll() {
+        return provinceRepository.findAll();
+    }
 }

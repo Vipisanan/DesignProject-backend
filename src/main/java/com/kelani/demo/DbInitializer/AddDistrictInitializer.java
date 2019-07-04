@@ -8,13 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(3)
 @ConditionalOnProperty(name = "app.init-district-db", havingValue = "true")
 public class AddDistrictInitializer implements CommandLineRunner {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AddRoles.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AddDistrictInitializer.class);
 
     @Autowired
     private DistrictRepository districtRepository;
@@ -24,8 +26,10 @@ public class AddDistrictInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if (districtRepository.findAll()!=null){
+//            districtRepository.deleteAll();
+        }
 
-        districtRepository.deleteAll();
 
         DistrictModel model1 = new DistrictModel(1, "Mullaitivu", provinceRepository.findFirstById(1));
         DistrictModel model2 = new DistrictModel(2, "Kilinochchi", provinceRepository.findFirstById(1));
@@ -88,5 +92,9 @@ public class AddDistrictInitializer implements CommandLineRunner {
         districtRepository.save(model23);
         districtRepository.save(model24);
         districtRepository.save(model25);
+
+        LOGGER.info("All 25 District Database has been initialized");
+
     }
+
 }

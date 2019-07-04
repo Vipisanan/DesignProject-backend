@@ -7,16 +7,29 @@ import javax.persistence.*;
 public class GSDivisionModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
-    @JoinTable(name = "election_zone_id")
-    private ElectionZoneModel electionZoneModel;
+//Grama Niladhari  Details
+
+    private String gnDivisionNo;
+
+    private String pNo;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
+    @JoinTable(name = "dis_id")
+    private DistrictModel districtModel;
 
     public GSDivisionModel() {
+    }
+
+    public GSDivisionModel(int id, String name, String gnDivisionNo, String pNo, DistrictModel districtModel) {
+        this.id = id;
+        this.name = name;
+        this.gnDivisionNo = gnDivisionNo;
+        this.pNo = pNo;
+        this.districtModel = districtModel;
     }
 
     public int getId() {
@@ -35,20 +48,27 @@ public class GSDivisionModel {
         this.name = name;
     }
 
-    public ElectionZoneModel getElectionZoneModel() {
-        return electionZoneModel;
+    public String getGnDivisionNo() {
+        return gnDivisionNo;
     }
 
-    public void setElectionZoneModel(ElectionZoneModel electionZoneModel) {
-        this.electionZoneModel = electionZoneModel;
+    public void setGnDivisionNo(String gnDivisionNo) {
+        this.gnDivisionNo = gnDivisionNo;
     }
 
-    @Override
-    public String toString() {
-        return "GSDivisionModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", electionZoneModel=" + electionZoneModel +
-                '}';
+    public String getpNo() {
+        return pNo;
+    }
+
+    public void setpNo(String pNo) {
+        this.pNo = pNo;
+    }
+
+    public DistrictModel getDistrictModel() {
+        return districtModel;
+    }
+
+    public void setDistrictModel(DistrictModel districtModel) {
+        this.districtModel = districtModel;
     }
 }

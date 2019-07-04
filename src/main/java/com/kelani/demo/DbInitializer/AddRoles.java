@@ -7,10 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 
 @Component
+@Order(1)
 @ConditionalOnProperty(name = "app.init-user-roles-db", havingValue = "true")
 public class AddRoles implements CommandLineRunner {
 
@@ -45,7 +47,8 @@ public class AddRoles implements CommandLineRunner {
             userTypeRepository.save(userTypeModel1);
             userTypeRepository.save(userTypeModel2);
             userTypeRepository.save(userTypeModel3);
-            userTypeRepository.save(userTypeModel4);
+            userTypeRepository.save(userTypeModel4
+            );
             userTypeRepository.save(userTypeModel5);
             userTypeRepository.save(userTypeModel6);
             userTypeRepository.save(userTypeModel7);

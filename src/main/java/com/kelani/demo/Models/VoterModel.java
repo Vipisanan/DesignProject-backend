@@ -15,6 +15,9 @@ public class VoterModel {
     @JoinColumn(name = "user_id")
     private UserModel userModel;
 
+    private boolean activeVoter;
+
+
     public VoterModel() {
     }
 
@@ -40,5 +43,13 @@ public class VoterModel {
 
     public void setUserModel(UserModel userModel) {
         this.userModel = userModel;
+    }
+
+    public boolean isActiveVoter() {
+        return activeVoter;
+    }
+
+    public void setActiveVoter(boolean activeVoter) {
+        this.activeVoter = activeVoter;
     }
 }

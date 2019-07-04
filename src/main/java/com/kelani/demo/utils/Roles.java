@@ -7,7 +7,7 @@ public enum  Roles {
     HOEC("Head of the Election Centre"),
     VRO("Voter Register Officer"),
     EO("Election Organizer"),
-    EOF("Election Office"),
+    EOF("Election Office"),  // like Admin
     CRO("Candidate Register Officer");
 
 

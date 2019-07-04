@@ -1,6 +1,9 @@
 package com.kelani.demo.Models;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -21,7 +24,12 @@ public class UserModel {
 
     private String firstName;
 
+    @NotNull
+    @UniqueElements
     private int nicNo;
+
+    @UniqueElements
+    private String votetId;
 
     private String lastName;
 
@@ -108,5 +116,11 @@ public class UserModel {
         this.nicNo = nicNo;
     }
 
+    public String getVotetId() {
+        return votetId;
+    }
 
+    public void setVotetId(String votetId) {
+        this.votetId = votetId;
+    }
 }

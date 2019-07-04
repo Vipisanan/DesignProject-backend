@@ -7,9 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(2)
 @ConditionalOnProperty(name = "app.init-province-db", havingValue = "true")
 
 public class AddProvinceInitializer implements CommandLineRunner {
@@ -22,7 +24,6 @@ public class AddProvinceInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        provinceRepository.deleteAll();
 
         ProvinceModel p1=new ProvinceModel(1 , "Nothern Province");
         ProvinceModel p2=new ProvinceModel(2 , "Eastern Province");

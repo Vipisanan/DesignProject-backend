@@ -47,8 +47,6 @@ public class DistrictController {
         LOGGER.info("Call in getAll method in districtController");
         List<DistrictModel> all;
         all = (List<DistrictModel>) districtService.getAll();
-        LOGGER.warn(String.valueOf(all));
-        LOGGER.error(objectMapper.writeValueAsString(all));
         return new ResponseEntity<>(new ApiResponse<>(all), HttpStatus.OK);
     }
 
