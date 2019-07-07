@@ -1,22 +1,16 @@
 package com.kelani.demo.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user_type")
 public class UserTypeModel {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String type;
 
-//    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-//    @JoinColumn(name = "user_id")
-//    private Set<UserModel> userModel;
 
 
     public UserTypeModel() {

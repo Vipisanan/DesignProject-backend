@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,18 +19,19 @@ public class UserModel {
     @JoinTable(name = "gs_division_id")
     private GSDivisionModel gsDivisionModel;
 
-    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name = "role_id")
-    private Set<UserTypeModel> userTypeModels;
+    @ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+   @JoinTable(name = "user_role",
+                joinColumns = @JoinColumn(name = "user_id")
+                , inverseJoinColumns = @JoinColumn(name = "role_id"))
+
+    private Set<UserTypeModel> userTypeModels = new HashSet<UserTypeModel>();
 
     private String firstName;
 
-    @NotNull
-    @UniqueElements
+//    @NotNull
+//    @UniqueElements
     private int nicNo;
 
-//    @UniqueElements
-//    private String votetId;
 
     private String lastName;
 

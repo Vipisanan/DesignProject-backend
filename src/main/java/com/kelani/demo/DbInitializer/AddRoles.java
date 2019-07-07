@@ -23,8 +23,6 @@ public class AddRoles implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (userTypeRepository.findAll()!=null)
-        userTypeRepository.deleteAll();
 
         UserTypeModel userTypeModel1 = new UserTypeModel(1 , "Voter");
         UserTypeModel userTypeModel2 = new UserTypeModel(2, "Election Commissioner");

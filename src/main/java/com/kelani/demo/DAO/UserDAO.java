@@ -2,27 +2,38 @@ package com.kelani.demo.DAO;
 
 public class UserDAO {
 
-    private String gsDivision;
 
     private String firstName;
 
     private String lastName;
 
-    private String voterId;
+    private int nicNo;
 
     private String specificDetails;
 
     private String imageUrl;
 
+    private int gsDivisionId;
+
+    private int userType;
+
     public UserDAO() {
     }
 
-    public String getGsDivision() {
-        return gsDivision;
+    public int getUserType() {
+        return userType;
     }
 
-    public void setGsDivision(String gsDivision) {
-        this.gsDivision = gsDivision;
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
+    public int getGsDivisionId() {
+        return gsDivisionId;
+    }
+
+    public void setGsDivisionId(int gsDivisionId) {
+        this.gsDivisionId = gsDivisionId;
     }
 
     public String getFirstName() {
@@ -41,13 +52,6 @@ public class UserDAO {
         this.lastName = lastName;
     }
 
-    public String getVoterId() {
-        return voterId;
-    }
-
-    public void setVoterId(String voterId) {
-        this.voterId = voterId;
-    }
 
     public String getSpecificDetails() {
         return specificDetails;
@@ -65,15 +69,11 @@ public class UserDAO {
         this.imageUrl = imageUrl;
     }
 
-    @Override
-    public String toString() {
-        return "UserDAO{" +
-                "gsDivision='" + gsDivision + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", voterId='" + voterId + '\'' +
-                ", specificDetails='" + specificDetails + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                '}';
+    public int getNicNo() {
+        return nicNo;
+    }
+
+    public void setNicNo(int nicNo) {
+        this.nicNo = nicNo;
     }
 }
