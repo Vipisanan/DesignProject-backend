@@ -18,6 +18,16 @@ public class UserDAO {
     public UserDAO() {
     }
 
+
+
+    public UserDAO(String firstName, String lastName, String imageUrl, int nicNo, String name) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nicNo = nicNo;
+        this.imageUrl = imageUrl;
+        this.gsDivisionName = name;
+    }
+
     public String getFirstName() {
         return firstName;
     }

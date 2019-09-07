@@ -3,6 +3,7 @@ package com.kelani.demo.Services;
 import com.kelani.demo.DAO.UserDAO;
 import com.kelani.demo.Models.UserModel;
 import com.kelani.demo.Repository.UserRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,16 +30,13 @@ public class UserService {
         List<UserModel> model = new ArrayList<>();
         model = userRepository.findAll();
         for (int i=0; i<model.size(); i++){
-            System.out.println("************************ " + model.size());
-            detailsDAO.setFirstName(model.get(i).getFirstName());
-            detailsDAO.setLastName(model.get(i).getLastName());
-            detailsDAO.setImageUrl(model.get(i).getImageUrl());
-            detailsDAO.setNicNo(model.get(i).getNicNo());
-            detailsDAO.setGsDivisionName(model.get(i).getGsDivisionModel().getName());
-            dao.add(detailsDAO);
+            dao.add(new UserDAO(model.get(i).getFirstName() ,
+                                model.get(i).getLastName() ,
+                                model.get(i).getImageUrl() ,
+                                model.get(i).getNicNo() ,
+                                model.get(i).getGsDivisionModel().getName() ));
+
         }
-
-
         return dao;
     }
 }
