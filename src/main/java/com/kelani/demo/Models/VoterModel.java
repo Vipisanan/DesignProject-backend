@@ -16,6 +16,7 @@ public class VoterModel {
     private UserModel userModel;
 
     private boolean activeVoter;
+//    isBlock
 
 
     public VoterModel() {

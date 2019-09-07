@@ -19,16 +19,16 @@ public class UserModel {
     @JoinTable(name = "gs_division_id")
     private GSDivisionModel gsDivisionModel;
 
-    @ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-   @JoinTable(name = "user_role",
-                joinColumns = @JoinColumn(name = "user_id")
-                , inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id")
+            , inverseJoinColumns = @JoinColumn(name = "role_id"))
 
     private Set<UserTypeModel> userTypeModels = new HashSet<UserTypeModel>();
 
     private String firstName;
 
-//    @NotNull
+    //    @NotNull
 //    @UniqueElements
     private int nicNo;
 
@@ -38,7 +38,6 @@ public class UserModel {
     private String specificDetails;
 
     private String imageUrl;
-
 
 
     public UserModel() {
@@ -109,4 +108,4 @@ public class UserModel {
         this.nicNo = nicNo;
     }
 
-   }
+}

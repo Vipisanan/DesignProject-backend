@@ -1,7 +1,6 @@
 package com.kelani.demo.DAO;
 
-public class UserDAO {
-
+public class UserAllDetailsDAO {
 
     private String firstName;
 
@@ -9,13 +8,31 @@ public class UserDAO {
 
     private int nicNo;
 
+    private String specificDetails;
+
     private String imageUrl;
 
-    private String gsDivisionName;
+    private int gsDivisionId;
 
     private int userType;
 
-    public UserDAO() {
+    public UserAllDetailsDAO() {
+    }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
+    public int getGsDivisionId() {
+        return gsDivisionId;
+    }
+
+    public void setGsDivisionId(int gsDivisionId) {
+        this.gsDivisionId = gsDivisionId;
     }
 
     public String getFirstName() {
@@ -34,12 +51,13 @@ public class UserDAO {
         this.lastName = lastName;
     }
 
-    public int getNicNo() {
-        return nicNo;
+
+    public String getSpecificDetails() {
+        return specificDetails;
     }
 
-    public void setNicNo(int nicNo) {
-        this.nicNo = nicNo;
+    public void setSpecificDetails(String specificDetails) {
+        this.specificDetails = specificDetails;
     }
 
     public String getImageUrl() {
@@ -50,30 +68,23 @@ public class UserDAO {
         this.imageUrl = imageUrl;
     }
 
-    public String getGsDivisionName() {
-        return gsDivisionName;
+    public int getNicNo() {
+        return nicNo;
     }
 
-    public void setGsDivisionName(String gsDivisionName) {
-        this.gsDivisionName = gsDivisionName;
-    }
-
-    public int getUserType() {
-        return userType;
-    }
-
-    public void setUserType(int userType) {
-        this.userType = userType;
+    public void setNicNo(int nicNo) {
+        this.nicNo = nicNo;
     }
 
     @Override
     public String toString() {
-        return "UserDAO{" +
+        return "UserAllDetailsDAO{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", nicNo=" + nicNo +
+                ", specificDetails='" + specificDetails + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", gsDivision='" + gsDivisionName + '\'' +
+                ", gsDivisionId=" + gsDivisionId +
                 ", userType=" + userType +
                 '}';
     }

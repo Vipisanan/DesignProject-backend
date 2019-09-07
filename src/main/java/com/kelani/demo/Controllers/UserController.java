@@ -1,6 +1,6 @@
 package com.kelani.demo.Controllers;
 
-import com.kelani.demo.DAO.UserDAO;
+import com.kelani.demo.DAO.UserAllDetailsDAO;
 import com.kelani.demo.Models.UserModel;
 import com.kelani.demo.Models.UserTypeModel;
 import com.kelani.demo.Payload.ApiResponse;
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @PostMapping("voter-register")
-    public ResponseEntity<?> registerVoter(@RequestBody UserDAO dao){
+    public ResponseEntity<?> registerVoter(@RequestBody UserAllDetailsDAO dao){
         UserModel userModel=new UserModel();
 
         userModel.setFirstName(dao.getFirstName());
@@ -55,6 +55,11 @@ public class UserController {
         userService.save(userModel);
         return new ResponseEntity<>(new ApiResponse<>(userModel) , HttpStatus.OK);
 
+    }
+
+    @GetMapping("all-users")
+    public ResponseEntity<?> getAllUser(){
+        return new ResponseEntity<>(new ApiResponse<>(userService.findAllUser()) , HttpStatus.OK);
     }
 
 
