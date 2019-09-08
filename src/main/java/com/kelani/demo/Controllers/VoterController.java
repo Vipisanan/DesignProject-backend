@@ -2,13 +2,11 @@ package com.kelani.demo.Controllers;
 
 import com.kelani.demo.Payload.ApiResponse;
 import com.kelani.demo.Services.VoterService;
+import com.kelani.demo.exceptions.AGException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,5 +24,11 @@ public class VoterController {
     public ResponseEntity<?> getAllVoter(){
         LOGGER.info("Called get all voter method in VoterController");
         return new ResponseEntity<>(new ApiResponse<>(voterService.getAllVoter()) , HttpStatus.OK);
+    }
+
+    @PostMapping("{id}")
+    public ResponseEntity<?> addVoter(@PathVariable("id") int id) throws AGException {
+        LOGGER.info("Called add voter method in VoterController with this userId" + id);
+        return new ResponseEntity<>(new ApiResponse<>(voterService.addVoter(id)) , HttpStatus.OK);
     }
 }
