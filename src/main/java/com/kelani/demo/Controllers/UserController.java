@@ -7,6 +7,7 @@ import com.kelani.demo.Payload.ApiResponse;
 import com.kelani.demo.Repository.GSDivisionRepository;
 import com.kelani.demo.Repository.UserTypeRepository;
 import com.kelani.demo.Services.UserService;
+import com.kelani.demo.exceptions.AGException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,7 @@ public class UserController {
         return new ResponseEntity<>(new ApiResponse<>(userService.save(userModel)), HttpStatus.OK);
     }
 
+
     @PostMapping("voter-register")
     public ResponseEntity<?> registerVoter(@RequestBody UserAllDetailsDAO dao){
         UserModel userModel=new UserModel();
@@ -60,6 +62,12 @@ public class UserController {
     @GetMapping("all-users")
     public ResponseEntity<?> getAllUser(){
         return new ResponseEntity<>(new ApiResponse<>(userService.findAllUser()) , HttpStatus.OK);
+    }
+
+//    get user by id
+    @GetMapping("{id}")
+    public ResponseEntity<?> getUserById(@PathVariable("id") int id) throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(userService.getUserById(id)) , HttpStatus.OK);
     }
 
 

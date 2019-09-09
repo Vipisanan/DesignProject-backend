@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 @Service
 public class VoterService {
 
-    private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(VoterController.class);
+    private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(VoterService.class);
 
     @Autowired
     private VoterRepository voterRepository;

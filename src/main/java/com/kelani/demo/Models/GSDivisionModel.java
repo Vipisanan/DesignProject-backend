@@ -13,7 +13,7 @@ public class GSDivisionModel {
 
 //Grama Niladhari  Details
 
-    private String gnDivisionNo;
+    private String gsDivisionNo;
 
     private String pNo;
 
@@ -24,10 +24,10 @@ public class GSDivisionModel {
     public GSDivisionModel() {
     }
 
-    public GSDivisionModel(int id, String name, String gnDivisionNo, String pNo, DistrictModel districtModel) {
+    public GSDivisionModel(int id, String name, String gsDivisionNo, String pNo, DistrictModel districtModel) {
         this.id = id;
         this.name = name;
-        this.gnDivisionNo = gnDivisionNo;
+        this.gsDivisionNo = gsDivisionNo;
         this.pNo = pNo;
         this.districtModel = districtModel;
     }
@@ -48,12 +48,12 @@ public class GSDivisionModel {
         this.name = name;
     }
 
-    public String getGnDivisionNo() {
-        return gnDivisionNo;
+    public String getGsDivisionNo() {
+        return gsDivisionNo;
     }
 
-    public void setGnDivisionNo(String gnDivisionNo) {
-        this.gnDivisionNo = gnDivisionNo;
+    public void setGsDivisionNo(String gsDivisionNo) {
+        this.gsDivisionNo = gsDivisionNo;
     }
 
     public String getpNo() {

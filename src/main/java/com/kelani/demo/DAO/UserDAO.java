@@ -2,6 +2,7 @@ package com.kelani.demo.DAO;
 
 public class UserDAO {
 
+    private int id;
 
     private String firstName;
 
@@ -20,12 +21,14 @@ public class UserDAO {
 
 
 
-    public UserDAO(String firstName, String lastName, String imageUrl, int nicNo, String name) {
+    public UserDAO(int id ,String firstName, String lastName, String imageUrl, int nicNo, String name) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nicNo = nicNo;
         this.imageUrl = imageUrl;
         this.gsDivisionName = name;
+
     }
 
     public String getFirstName() {
@@ -60,6 +63,14 @@ public class UserDAO {
         this.imageUrl = imageUrl;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getGsDivisionName() {
         return gsDivisionName;
     }
@@ -79,11 +90,12 @@ public class UserDAO {
     @Override
     public String toString() {
         return "UserDAO{" +
-                "firstName='" + firstName + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", nicNo=" + nicNo +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", gsDivision='" + gsDivisionName + '\'' +
+                ", gsDivisionName='" + gsDivisionName + '\'' +
                 ", userType=" + userType +
                 '}';
     }
