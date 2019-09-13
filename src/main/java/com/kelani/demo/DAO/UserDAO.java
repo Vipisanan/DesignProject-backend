@@ -8,7 +8,7 @@ public class UserDAO {
 
     private String lastName;
 
-    private int nicNo;
+    private long nicNo;
 
     private String imageUrl;
 
@@ -21,7 +21,7 @@ public class UserDAO {
 
 
 
-    public UserDAO(int id ,String firstName, String lastName, String imageUrl, int nicNo, String name) {
+    public UserDAO(int id ,String firstName, String lastName, String imageUrl, long nicNo, String name) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,11 +47,11 @@ public class UserDAO {
         this.lastName = lastName;
     }
 
-    public int getNicNo() {
+    public long getNicNo() {
         return nicNo;
     }
 
-    public void setNicNo(int nicNo) {
+    public void setNicNo(long nicNo) {
         this.nicNo = nicNo;
     }
 

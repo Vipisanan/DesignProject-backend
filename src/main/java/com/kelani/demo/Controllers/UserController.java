@@ -7,7 +7,6 @@ import com.kelani.demo.Payload.ApiResponse;
 import com.kelani.demo.Repository.GSDivisionRepository;
 import com.kelani.demo.Repository.UserTypeRepository;
 import com.kelani.demo.Services.UserService;
-import com.kelani.demo.exceptions.AGException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class UserController {
     @Autowired
     private UserTypeRepository userTypeRepository;
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<?> userModelGetAll() {
         return new ResponseEntity<>(new ApiResponse<>(userService.findAll()), HttpStatus.OK);
     }

@@ -6,12 +6,17 @@ import javax.persistence.*;
 @Table(name = "party_colour")
 public class PartyColourModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String colour;
 
     public PartyColourModel() {
+    }
+
+    public PartyColourModel(int id, String colour) {
+        this.id = id;
+        this.colour = colour;
     }
 
     public int getId() {

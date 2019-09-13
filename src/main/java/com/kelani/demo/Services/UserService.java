@@ -42,7 +42,7 @@ public class UserService {
                                 model.get(i).getFirstName() ,
                                 model.get(i).getLastName() ,
                                 model.get(i).getImageUrl() ,
-                                model.get(i).getNicNo() ,
+                                model.get(i).getNicNo(),
                                 model.get(i).getGsDivisionModel().getName() ));
 
         }

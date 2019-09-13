@@ -1,11 +1,9 @@
-package com.kelani.demo.Models;
+package com.kelani.demo.Models.idGenerator;
 
 import java.io.Serializable;
 import java.sql.*;
 import org.hibernate.HibernateException;
 import org.hibernate.id.IdentifierGenerator;
-
-
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 
 import java.sql.Connection;
@@ -18,11 +16,10 @@ public class VoteIdGenerator implements IdentifierGenerator {
         Connection connection = sharedSessionContractImplementor.connection();
 
         try {
-            Statement statement=connection.createStatement();
-            ResultSet rs=statement.executeQuery("select count(voter_Id) as Id from voter");
-            if(rs.next())
-            {
-                int id=rs.getInt(1)+101;
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select count(voter_Id) as Id from voter");
+            if (rs.next()) {
+                int id = rs.getInt(1) + 101;
                 String generatedId = prefix + new Integer(id).toString();
                 System.out.println("Generated Id: " + generatedId);
                 return generatedId;

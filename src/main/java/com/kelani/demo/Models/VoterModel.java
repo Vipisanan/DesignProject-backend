@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Table(name = "voter")
 public class VoterModel {
     @Id
-    @GenericGenerator(name = "sequence_dep_id", strategy = "com.kelani.demo.Models.VoteIdGenerator")
-    @GeneratedValue(generator = "sequence_dep_id")
+    @GenericGenerator(name = "sequence_voter_Id", strategy = "com.kelani.demo.Models.idGenerator.VoteIdGenerator")
+    @GeneratedValue(generator = "sequence_voter_Id")
     @Column(name="voter_Id")
     private String voterId;
 

@@ -28,9 +28,9 @@ public class UserModel {
 
     private String firstName;
 
-    //    @NotNull
-//    @UniqueElements
-    private int nicNo;
+
+    @Column(unique = true , nullable = false)
+    private long nicNo;
 
 
     private String lastName;
@@ -100,11 +100,11 @@ public class UserModel {
         this.imageUrl = imageUrl;
     }
 
-    public int getNicNo() {
+    public long getNicNo() {
         return nicNo;
     }
 
-    public void setNicNo(int nicNo) {
+    public void setNicNo(long nicNo) {
         this.nicNo = nicNo;
     }
 
