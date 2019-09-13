@@ -1,13 +1,17 @@
 package com.kelani.demo.Models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "voter")
 public class VoterModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GenericGenerator(name = "sequence_dep_id", strategy = "com.kelani.demo.Models.VoteIdGenerator")
+    @GeneratedValue(generator = "sequence_dep_id")
+    @Column(name="voter_Id")
+    private String voterId;
 
     private String password;
 
@@ -22,12 +26,12 @@ public class VoterModel {
     public VoterModel() {
     }
 
-    public int getId() {
-        return id;
+    public String getVoterId() {
+        return voterId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setVoterId(String voterId) {
+        this.voterId = voterId;
     }
 
     public String getPassword() {
