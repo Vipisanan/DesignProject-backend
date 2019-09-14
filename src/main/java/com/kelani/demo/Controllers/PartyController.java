@@ -33,5 +33,10 @@ public class PartyController {
         return new ResponseEntity<>(new ApiResponse<>(partyService.saveParty(partyDAO)) , HttpStatus.OK);
     }
 
+    @GetMapping("color")
+    public ResponseEntity<?> getPartyColor() throws Exception{
+        return new ResponseEntity<>(new ApiResponse<>(partyService.getPartyColor()) ,HttpStatus.OK);
+    }
+
 
 }

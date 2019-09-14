@@ -1,5 +1,6 @@
 package com.kelani.demo.Controllers;
 
+import com.kelani.demo.DAO.CandidateModelDAO;
 import com.kelani.demo.Models.CandidateModel;
 import com.kelani.demo.Payload.ApiResponse;
 import com.kelani.demo.Services.CandidateService;
@@ -22,8 +23,8 @@ public class CandidateController  {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveCandidate(@RequestBody CandidateModel saveCandidate) throws Exception {
-        return new ResponseEntity<>(new ApiResponse<>(candidateService.saveCandidate(saveCandidate)) , HttpStatus.OK);
+    public ResponseEntity<?> saveCandidate(@RequestBody CandidateModelDAO dao) throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(candidateService.saveCandidate(dao)) , HttpStatus.OK);
     }
 
 }

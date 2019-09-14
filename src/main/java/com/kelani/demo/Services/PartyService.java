@@ -27,6 +27,7 @@ public class PartyService {
     @Autowired
     private PartyColourRepository partyColourRepository;
 
+
     public List<PartyModel> getAllParties() throws AGException {
         try {
             partyRepository.findAll();
@@ -54,5 +55,15 @@ public class PartyService {
         }
 
         return model;
+    }
+
+    public List<PartyColourModel> getPartyColor() throws AGException {
+        try {
+            partyColourRepository.findAll();
+        }catch (Exception e){
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+        return  partyColourRepository.findAll();
     }
 }

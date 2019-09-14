@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PartyRepository extends JpaRepository<PartyModel , Integer> {
+
+    PartyModel findFirstById(String s);
 }
