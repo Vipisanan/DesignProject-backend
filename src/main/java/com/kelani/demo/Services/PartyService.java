@@ -41,8 +41,6 @@ public class PartyService {
         PartyColourModel partyColourModel;
         PartyModel model = new PartyModel();
 
-
-
         try {
             partyColourModel = partyColourRepository.findFirstById(partyDAO.getPartyColourId());
             model.setColor(partyColourModel);

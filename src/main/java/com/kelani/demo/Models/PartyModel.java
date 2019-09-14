@@ -1,29 +1,35 @@
 package com.kelani.demo.Models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "party")
 public class PartyModel {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GenericGenerator(name = "sequence_party_Id", strategy = "com.kelani.demo.Models.idGenerator.PartyIdGenerator")
+    @GeneratedValue(generator = "sequence_party_Id")
+    @Column(name="party_Id")
+    private String id;
 
     private String name;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "colour_id")
     private PartyColourModel color;
 
+
     private String logoUrl;
 
     public PartyModel() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
