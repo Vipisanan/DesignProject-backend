@@ -18,6 +18,8 @@ public class NominatedCandidateModel {
     @JoinColumn(name = "candidate_id")
     private CandidateModel candidateModel;
 
+
+
     public NominatedCandidateModel() {
     }
 

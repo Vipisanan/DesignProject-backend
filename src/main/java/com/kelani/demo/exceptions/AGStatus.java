@@ -17,7 +17,11 @@ public enum AGStatus {
     AWS_ERROR("E1010", "Some error occurred with AWS server"),
     FILE_CONVERTION_ERROR("E1011", "Unknown error occurred while converting a file"),
     UNKOWN_OBJECT("E1012", "New object are not allowed"),
-    ALREADY_EXIST("E1013", "The data you entered already exist ");
+    ALREADY_EXIST("E1013", "The data you entered already exist "),
+
+//    for voting system
+
+    NO_VOTER_FOUND("V1000" ,"Invalid voter ID from database");
 
     private final String statusCode;
     private final String statusDescription;

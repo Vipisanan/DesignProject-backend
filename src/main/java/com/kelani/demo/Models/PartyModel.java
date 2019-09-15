@@ -11,10 +11,11 @@ public class PartyModel {
     @Id
     @GenericGenerator(name = "sequence_party_Id", strategy = "com.kelani.demo.Models.idGenerator.PartyIdGenerator")
     @GeneratedValue(generator = "sequence_party_Id")
-    @Column(name="party_Id")
+    @Column(name = "party_Id")
     private String id;
 
     private String name;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "colour_id")
     private PartyColourModel color;

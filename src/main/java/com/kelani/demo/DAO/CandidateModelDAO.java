@@ -3,7 +3,7 @@ package com.kelani.demo.DAO;
 public class CandidateModelDAO {
 
 
-    private String  partyModelId;
+    private String partyModelId;
 
     private String name;
 
@@ -11,7 +11,8 @@ public class CandidateModelDAO {
 
     private String pno;
 
-    private boolean active;
+    private String voterId;
+
 
     public CandidateModelDAO() {
     }
@@ -48,12 +49,13 @@ public class CandidateModelDAO {
         this.pno = pno;
     }
 
-    public boolean isActive() {
-        return active;
+
+
+    public String getVoterId() {
+        return voterId;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setVoterId(String voterId) {
+        this.voterId = voterId;
     }
-
 }

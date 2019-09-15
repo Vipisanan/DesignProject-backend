@@ -1,5 +1,7 @@
 package com.kelani.demo.Models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,25 +9,29 @@ import javax.persistence.*;
 public class NominatedPartyModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GenericGenerator(name = "sequence_n_party_Id", strategy = "com.kelani.demo.Models.idGenerator.NominatedPartyIDGenerator")
+    @GeneratedValue(generator = "sequence_n_party_Id")
+    @Column(name = "nParty_Id")
+    private String id;
 
-    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "election_id")
     private ElectionModel electionModel;
 
-    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "party_id")
     private PartyModel partyModel;
+
+    private boolean isActive;
 
     public NominatedPartyModel() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -43,5 +49,13 @@ public class NominatedPartyModel {
 
     public void setPartyModel(PartyModel partyModel) {
         this.partyModel = partyModel;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
