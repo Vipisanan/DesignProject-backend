@@ -28,11 +28,13 @@ public class CandidateController {
     }
 
 
-    //first nominate party then we can nominate candidate
+    //first nominate party then we can nominate candidate =>done
 // Column 'nominated_party_id' cannot be null
-    @PostMapping("nomination/{id}")
-    public ResponseEntity<?> candidateNomination(@PathVariable(name = "id") int i) throws Exception {
-        return new ResponseEntity<>(new ApiResponse<>(candidateService.candidateNomination(i)), HttpStatus.OK);
+//using nominatedPartyId ="N-PARTY-101"(String) and candidateID =1(int)
+    @PostMapping("nomination/{cId}/{npId}")
+    public ResponseEntity<?> candidateNomination(@PathVariable(name = "cId") int i ,
+                                                 @PathVariable (name = "npId") String s) throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(candidateService.candidateNomination(i , s)), HttpStatus.OK);
     }
 
 }

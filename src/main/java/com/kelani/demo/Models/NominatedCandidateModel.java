@@ -19,7 +19,6 @@ public class NominatedCandidateModel {
     private CandidateModel candidateModel;
 
 
-
     public NominatedCandidateModel() {
     }
 
@@ -46,4 +45,5 @@ public class NominatedCandidateModel {
     public void setCandidateModel(CandidateModel candidateModel) {
         this.candidateModel = candidateModel;
     }
+
 }

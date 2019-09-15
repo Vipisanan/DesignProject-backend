@@ -3,10 +3,8 @@ package com.kelani.demo.Services;
 import com.kelani.demo.DAO.CandidateModelDAO;
 import com.kelani.demo.Models.CandidateModel;
 import com.kelani.demo.Models.NominatedCandidateModel;
-import com.kelani.demo.Repository.CandidateRepository;
-import com.kelani.demo.Repository.NominatedCandidateRepository;
-import com.kelani.demo.Repository.PartyRepository;
-import com.kelani.demo.Repository.VoterRepository;
+import com.kelani.demo.Models.NominatedPartyModel;
+import com.kelani.demo.Repository.*;
 import com.kelani.demo.exceptions.AGException;
 import com.kelani.demo.exceptions.AGStatus;
 import org.slf4j.Logger;
@@ -30,6 +28,8 @@ public class CandidateService {
     private VoterRepository voterRepository;
     @Autowired
     private NominatedCandidateRepository nominatedCandidateRepository;
+    @Autowired
+    private NominatedPartyRepository nominatedPartyRepository;
 
     public List<CandidateModel> getAllCandidate() {
         return candidateRepository.findAll();
@@ -58,11 +58,15 @@ public class CandidateService {
         return candidateModel;
     }
 
-    public NominatedCandidateModel candidateNomination(int i) throws AGException {
+//using nominatedPartyId ="N-PARTY-101"(String) and candidateID =1(int)
+    public NominatedCandidateModel candidateNomination(int i ,String s) throws AGException {
+        NominatedPartyModel nominatedPartyModel=new NominatedPartyModel();
         NominatedCandidateModel nominatedCandidateModel=new NominatedCandidateModel();
-        if (candidateRepository.findFirstById(i) != null){
+        if (candidateRepository.findFirstById(i) != null && nominatedPartyRepository.findFirstById(s) !=null){
             try {
+                nominatedPartyModel =nominatedPartyRepository.findFirstById(s);
                 nominatedCandidateModel.setCandidateModel(candidateRepository.findFirstById(i));
+                nominatedCandidateModel.setNominatedPartyModel(nominatedPartyModel);
                 nominatedCandidateRepository.save(nominatedCandidateModel);
             }catch (Exception e){
                 LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
