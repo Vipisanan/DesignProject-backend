@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ElectionTypeRepository extends JpaRepository<ElectionTypeModel ,Integer> {
+    ElectionTypeModel findFirstById(int i);
 }

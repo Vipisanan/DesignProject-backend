@@ -7,12 +7,17 @@ import javax.persistence.*;
 public class ElectionTypeModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String type;
 
     public ElectionTypeModel() {
+    }
+
+    public ElectionTypeModel(int id, String type) {
+        this.id = id;
+        this.type = type;
     }
 
     public int getId() {

@@ -24,19 +24,22 @@ public class PartyController {
     private PartyService partyService;
 
     @GetMapping
-    public ResponseEntity<?> getAllParties() throws Exception{
-        return new ResponseEntity<>(new ApiResponse<>(partyService.getAllParties()) , HttpStatus.OK);
+    public ResponseEntity<?> getAllParties() throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(partyService.getAllParties()), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> saveParty(@RequestBody PartyDAO partyDAO) throws Exception{
-        return new ResponseEntity<>(new ApiResponse<>(partyService.saveParty(partyDAO)) , HttpStatus.OK);
+    public ResponseEntity<?> saveParty(@RequestBody PartyDAO partyDAO) throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(partyService.saveParty(partyDAO)), HttpStatus.OK);
     }
 
     @GetMapping("color")
-    public ResponseEntity<?> getPartyColor() throws Exception{
-        return new ResponseEntity<>(new ApiResponse<>(partyService.getPartyColor()) ,HttpStatus.OK);
+    public ResponseEntity<?> getPartyColor() throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(partyService.getPartyColor()), HttpStatus.OK);
     }
 
+//    party nomination
+//    before party nomination we have to add Election
+//    one can have many Party-nominated
 
 }
