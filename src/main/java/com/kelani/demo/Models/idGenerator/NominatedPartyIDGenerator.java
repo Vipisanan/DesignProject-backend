@@ -18,7 +18,7 @@ public class NominatedPartyIDGenerator implements IdentifierGenerator {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select count(nParty_Id) as Id from nominated_party");
+            ResultSet rs = statement.executeQuery("select count(nominated_party_id) as Id from nominated_party");
             if (rs.next()) {
                 int id = rs.getInt(1) + 101;
                 String generatedId = prefix + new Integer(id).toString();

@@ -11,7 +11,7 @@ public class NominatedPartyModel {
     @Id
     @GenericGenerator(name = "sequence_n_party_Id", strategy = "com.kelani.demo.Models.idGenerator.NominatedPartyIDGenerator")
     @GeneratedValue(generator = "sequence_n_party_Id")
-    @Column(name = "nParty_Id")
+    @Column(name = "nominated_party_id")
     private String id;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)

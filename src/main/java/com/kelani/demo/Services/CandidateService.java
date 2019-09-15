@@ -2,7 +2,9 @@ package com.kelani.demo.Services;
 
 import com.kelani.demo.DAO.CandidateModelDAO;
 import com.kelani.demo.Models.CandidateModel;
+import com.kelani.demo.Models.NominatedCandidateModel;
 import com.kelani.demo.Repository.CandidateRepository;
+import com.kelani.demo.Repository.NominatedCandidateRepository;
 import com.kelani.demo.Repository.PartyRepository;
 import com.kelani.demo.Repository.VoterRepository;
 import com.kelani.demo.exceptions.AGException;
@@ -26,6 +28,8 @@ public class CandidateService {
     private PartyRepository partyRepository;
     @Autowired
     private VoterRepository voterRepository;
+    @Autowired
+    private NominatedCandidateRepository nominatedCandidateRepository;
 
     public List<CandidateModel> getAllCandidate() {
         return candidateRepository.findAll();
@@ -52,5 +56,22 @@ public class CandidateService {
         }
 
         return candidateModel;
+    }
+
+    public NominatedCandidateModel candidateNomination(int i) throws AGException {
+        NominatedCandidateModel nominatedCandidateModel=new NominatedCandidateModel();
+        if (candidateRepository.findFirstById(i) != null){
+            try {
+                nominatedCandidateModel.setCandidateModel(candidateRepository.findFirstById(i));
+                nominatedCandidateRepository.save(nominatedCandidateModel);
+            }catch (Exception e){
+                LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+                throw new AGException(AGStatus.DB_ERROR);
+            }
+        }else {
+            LOGGER.error(AGStatus.NO_CANDIDATE_FOUND.getStatusDescription());
+            throw new AGException(AGStatus.NO_CANDIDATE_FOUND);
+        }
+        return nominatedCandidateModel;
     }
 }

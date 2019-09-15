@@ -47,4 +47,8 @@ public class ElectionService {
         }
         return modelList;
     }
+
+    public List<ElectionModel> getAllElection() {
+        return electionRepository.findAll();
+    }
 }

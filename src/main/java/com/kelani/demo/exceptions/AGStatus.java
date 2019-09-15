@@ -21,7 +21,8 @@ public enum AGStatus {
 
 //    for voting system
 
-    NO_VOTER_FOUND("V1000" ,"Invalid voter ID from database");
+    NO_VOTER_FOUND("V1000" ,"Invalid voter ID from database"),
+    NO_CANDIDATE_FOUND("C1000" ,"Invalid Candidate ID from database");
 
     private final String statusCode;
     private final String statusDescription;

@@ -2,8 +2,12 @@ package com.kelani.demo.Services;
 
 import com.kelani.demo.Controllers.PartyController;
 import com.kelani.demo.DAO.PartyDAO;
+import com.kelani.demo.Models.ElectionModel;
+import com.kelani.demo.Models.NominatedPartyModel;
 import com.kelani.demo.Models.PartyColourModel;
 import com.kelani.demo.Models.PartyModel;
+import com.kelani.demo.Repository.ElectionRepository;
+import com.kelani.demo.Repository.NominatedPartyRepository;
 import com.kelani.demo.Repository.PartyColourRepository;
 import com.kelani.demo.Repository.PartyRepository;
 import com.kelani.demo.exceptions.AGException;
@@ -26,6 +30,10 @@ public class PartyService {
 
     @Autowired
     private PartyColourRepository partyColourRepository;
+    @Autowired
+    private ElectionRepository electionRepository;
+    @Autowired
+    private NominatedPartyRepository nominatedPartyRepository;
 
 
     public List<PartyModel> getAllParties() throws AGException {
@@ -60,10 +68,27 @@ public class PartyService {
     public List<PartyColourModel> getPartyColor() throws AGException {
         try {
             partyColourRepository.findAll();
-        }catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
             throw new AGException(AGStatus.DB_ERROR);
         }
-        return  partyColourRepository.findAll();
+        return partyColourRepository.findAll();
+    }
+
+    public NominatedPartyModel partyNomination(int i, String s) throws AGException {
+//        get election model and Party model then save
+        NominatedPartyModel nominatedPartyModel = new NominatedPartyModel();
+
+        try {
+            ElectionModel electionModel = electionRepository.findFirstById(i);
+            PartyModel partyModel = partyRepository.findFirstById(s);
+            nominatedPartyModel.setElectionModel(electionModel);
+            nominatedPartyModel.setPartyModel(partyModel);
+            nominatedPartyRepository.save(nominatedPartyModel);
+        } catch (Exception e) {
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+        return nominatedPartyModel;
     }
 }

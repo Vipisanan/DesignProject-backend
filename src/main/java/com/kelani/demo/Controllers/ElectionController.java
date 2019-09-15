@@ -16,6 +16,11 @@ public class ElectionController {
     @Autowired
     private ElectionService electionService;
 
+    @GetMapping
+    public ResponseEntity<?> getAllElection(){
+        return new ResponseEntity<>(new ApiResponse<>(electionService.getAllElection()) ,HttpStatus.OK);
+    }
+
     @GetMapping("types")
     public ResponseEntity<?> getAllElectionTypes() throws Exception{
         return new ResponseEntity<>(new ApiResponse<>(electionService.getAllElectionTypes()) ,HttpStatus.OK);

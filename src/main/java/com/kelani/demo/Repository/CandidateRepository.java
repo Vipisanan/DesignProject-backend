@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CandidateRepository extends JpaRepository<CandidateModel, Integer> {
+    CandidateModel findFirstById(int i);
 }
