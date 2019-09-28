@@ -61,7 +61,37 @@ public class ElectionService {
 
         try {
             electionModel=electionRepository.findFirstById(id);
-            electionModel.setActive(true);
+            if (electionModel.isActive() == true){
+                throw new AGException(AGStatus.ALREADY_ACTIVE_ELECTION);
+            }
+        }catch (Exception e){
+            throw new AGException(AGStatus.ALREADY_ACTIVE_ELECTION);
+        }
+
+        try {
+                electionModel.setActive(true);
+                electionRepository.save(electionModel);
+        }catch (Exception e){
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+        return electionModel;
+    }
+
+    public ElectionModel deActiveElection(int id) throws AGException {
+        ElectionModel electionModel =new ElectionModel();
+
+        try {
+            electionModel=electionRepository.findFirstById(id);
+            if (electionModel.isActive() == false){
+                throw new AGException(AGStatus.ALREADY_DEACTIVATE_ELECTION);
+            }
+        }catch (Exception e){
+            throw new AGException(AGStatus.ALREADY_DEACTIVATE_ELECTION);
+        }
+
+        try {
+            electionModel.setActive(false);
             electionRepository.save(electionModel);
         }catch (Exception e){
             LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());

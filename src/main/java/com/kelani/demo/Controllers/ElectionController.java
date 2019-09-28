@@ -38,8 +38,13 @@ public class ElectionController {
 //    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> deleteElection(@PathVariable(name = "id") int id) throws Exception{
+    public ResponseEntity<?> activeElection(@PathVariable(name = "id") int id) throws Exception{
         return new ResponseEntity<>(new ApiResponse<>(electionService.activeElection(id)) ,HttpStatus.OK);
+    }
+
+    @GetMapping("deactive/{id}")
+    public ResponseEntity<?> deActiveElection(@PathVariable(name = "id") int id) throws Exception{
+        return new ResponseEntity<>(new ApiResponse<>(electionService.deActiveElection(id)) ,HttpStatus.OK);
     }
 
 
