@@ -15,6 +15,8 @@ public class ElectionModel {
     @JoinTable(name = "type_id")
     private ElectionTypeModel electionTypeModel;
 
+    private boolean active;
+
     public ElectionModel() {
     }
 
@@ -34,11 +36,11 @@ public class ElectionModel {
         this.electionTypeModel = electionTypeModel;
     }
 
-    @Override
-    public String toString() {
-        return "ElectionModel{" +
-                "id=" + id +
-                ", electionTypeModel=" + electionTypeModel +
-                '}';
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

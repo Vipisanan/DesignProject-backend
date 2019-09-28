@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ElectionRepository extends JpaRepository<ElectionModel ,Integer> {
     ElectionModel findFirstById(int i);
+    ElectionModel deleteById(int i);
 }

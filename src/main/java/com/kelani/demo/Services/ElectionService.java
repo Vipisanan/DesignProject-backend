@@ -51,4 +51,22 @@ public class ElectionService {
     public List<ElectionModel> getAllElection() {
         return electionRepository.findAll();
     }
+
+    public ElectionModel daleteElection(int id) {
+        return electionRepository.deleteById(id);
+    }
+
+    public ElectionModel activeElection(int id) throws AGException {
+        ElectionModel electionModel =new ElectionModel();
+
+        try {
+            electionModel=electionRepository.findFirstById(id);
+            electionModel.setActive(true);
+            electionRepository.save(electionModel);
+        }catch (Exception e){
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+        return electionModel;
+    }
 }

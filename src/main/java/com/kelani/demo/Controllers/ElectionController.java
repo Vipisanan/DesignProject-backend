@@ -1,6 +1,6 @@
 package com.kelani.demo.Controllers;
 
-import com.kelani.demo.Models.ElectionModel;
+import com.kelani.demo.Models.  ElectionModel;
 import com.kelani.demo.Payload.ApiResponse;
 import com.kelani.demo.Services.ElectionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ public class ElectionController {
     @Autowired
     private ElectionService electionService;
 
+//    getAll registered election
     @GetMapping
     public ResponseEntity<?> getAllElection(){
         return new ResponseEntity<>(new ApiResponse<>(electionService.getAllElection()) ,HttpStatus.OK);
@@ -26,9 +27,22 @@ public class ElectionController {
         return new ResponseEntity<>(new ApiResponse<>(electionService.getAllElectionTypes()) ,HttpStatus.OK);
     }
 
-    @PostMapping("add-election/{id}")
+    @GetMapping("add-election/{id}")
     public ResponseEntity<?> addElection(@PathVariable(name = "id") int id) throws Exception{
         return new ResponseEntity<>(new ApiResponse<>(electionService.addElection(id)), HttpStatus.OK);
     }
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<?> deleteElection(@PathVariable(name = "id") int id) throws Exception{
+//        return new ResponseEntity<>(new ApiResponse<>(electionService.daleteElection(id)) ,HttpStatus.OK);
+//    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> deleteElection(@PathVariable(name = "id") int id) throws Exception{
+        return new ResponseEntity<>(new ApiResponse<>(electionService.activeElection(id)) ,HttpStatus.OK);
+    }
+
+
+
 
 }
