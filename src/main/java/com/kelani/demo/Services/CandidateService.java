@@ -111,4 +111,15 @@ public class CandidateService {
         }
         return null;
     }
+
+    public List<NominatedCandidateModel> getAllNominatedCandidate() throws AGException {
+        List<NominatedCandidateModel> nominatedCandidateModels;
+        try {
+            nominatedCandidateModels=nominatedCandidateRepository.findAll();
+        }catch (Exception e){
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+        return nominatedCandidateModels;
+    }
 }

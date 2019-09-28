@@ -44,4 +44,9 @@ public class CandidateController {
         return new ResponseEntity<>(new ApiResponse<>(candidateService.candidateNominationByPartyId(i, s)), HttpStatus.OK);
     }
 
+    @GetMapping("nominated-candidate")
+    public ResponseEntity<?> getAllNominatedCandidate() throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(candidateService.getAllNominatedCandidate()), HttpStatus.OK);
+    }
+
 }
