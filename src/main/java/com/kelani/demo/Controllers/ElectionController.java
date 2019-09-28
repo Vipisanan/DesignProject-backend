@@ -47,6 +47,12 @@ public class ElectionController {
         return new ResponseEntity<>(new ApiResponse<>(electionService.deActiveElection(id)) ,HttpStatus.OK);
     }
 
+//    get all active election
+    @GetMapping("get-all-active-election")
+    public ResponseEntity<?> getAllActiveElection() throws Exception{
+        return new ResponseEntity<>(new ApiResponse<>(electionService.getAllActiveElection()) ,HttpStatus.OK);
+    }
+
 
 
 

@@ -99,4 +99,15 @@ public class ElectionService {
         }
         return electionModel;
     }
+
+    public List<ElectionModel>  getAllActiveElection() throws AGException {
+        List<ElectionModel> modelList;
+        try {
+            modelList = electionRepository.findFirstByActive(true);
+        }catch (Exception e){
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+        return modelList;
+    }
 }
