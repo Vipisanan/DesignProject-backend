@@ -43,7 +43,7 @@ public class PartyController {
 //    one can have many Party-nominated
     //        get election model and Party model then save
 
-    @PostMapping("nomination/{eId}/{pId}")
+    @GetMapping("nomination/{eId}/{pId}")
     public ResponseEntity<?> partyNomination(@PathVariable(name = "eId") int i ,
                                              @PathVariable(name = "pId") String s) throws Exception{
         return new ResponseEntity<>(new ApiResponse<>(partyService.partyNomination(i,s)), HttpStatus.OK);
