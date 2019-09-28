@@ -32,9 +32,16 @@ public class CandidateController {
 // Column 'nominated_party_id' cannot be null
 //using nominatedPartyId ="N-PARTY-101"(String) and candidateID =1(int)
     @PostMapping("nomination/{cId}/{npId}")
-    public ResponseEntity<?> candidateNomination(@PathVariable(name = "cId") int i ,
-                                                 @PathVariable (name = "npId") String s) throws Exception {
-        return new ResponseEntity<>(new ApiResponse<>(candidateService.candidateNomination(i , s)), HttpStatus.OK);
+    public ResponseEntity<?> candidateNomination(@PathVariable(name = "cId") int i,
+                                                 @PathVariable(name = "npId") String s) throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(candidateService.candidateNomination(i, s)), HttpStatus.OK);
+    }
+
+//    i want to nominate candidate using candidateId , partyId no nominatedPartyId
+    @GetMapping("nomination/{cid}/{pid}")
+    public ResponseEntity<?> candidateNominationByPartyId(@PathVariable(name = "cid") int i,
+                                                 @PathVariable(name = "pid") String s) throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(candidateService.candidateNominationByPartyId(i, s)), HttpStatus.OK);
     }
 
 }

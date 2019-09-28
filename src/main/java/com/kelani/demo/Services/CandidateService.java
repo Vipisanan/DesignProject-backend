@@ -4,6 +4,7 @@ import com.kelani.demo.DAO.CandidateModelDAO;
 import com.kelani.demo.Models.CandidateModel;
 import com.kelani.demo.Models.NominatedCandidateModel;
 import com.kelani.demo.Models.NominatedPartyModel;
+import com.kelani.demo.Models.PartyModel;
 import com.kelani.demo.Repository.*;
 import com.kelani.demo.exceptions.AGException;
 import com.kelani.demo.exceptions.AGStatus;
@@ -77,5 +78,37 @@ public class CandidateService {
             throw new AGException(AGStatus.NO_CANDIDATE_FOUND);
         }
         return nominatedCandidateModel;
+    }
+
+    public NominatedCandidateModel candidateNominationByPartyId(int i, String s) throws AGException {
+//        1.get party id
+//        2.confirm is this party was nominated?
+//        3.if it's nominated get the id and do
+
+        PartyModel partyModel =partyRepository.findFirstById(s);
+        NominatedPartyModel model=nominatedPartyRepository.findFirstByPartyModel(partyModel);
+
+        NominatedPartyModel nominatedPartyModel=new NominatedPartyModel();
+        NominatedCandidateModel nominatedCandidateModel=new NominatedCandidateModel();
+
+        if (partyModel.getId() == model.getPartyModel().getId()){
+            if (candidateRepository.findFirstById(i)!=null){
+                try {
+                    nominatedPartyModel =nominatedPartyRepository.findFirstById(model.getId());
+                    nominatedCandidateModel.setCandidateModel(candidateRepository.findFirstById(i));
+                    nominatedCandidateModel.setNominatedPartyModel(nominatedPartyModel);
+                    nominatedCandidateRepository.save(nominatedCandidateModel);
+                }catch (Exception e){
+                    LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+                    throw new AGException(AGStatus.DB_ERROR);
+                }
+            }else {
+                LOGGER.error(AGStatus.NO_CANDIDATE_FOUND.getStatusDescription());
+                throw new AGException(AGStatus.NO_CANDIDATE_FOUND);
+            }
+        }else {
+            throw new AGException(AGStatus.PARTY_NOT_NOMINATED);
+        }
+        return null;
     }
 }

@@ -25,8 +25,11 @@ public enum AGStatus {
     NO_CANDIDATE_FOUND("C1000" ,"Invalid Candidate ID from database"),
 
 //    Register election
-    ALREADY_ACTIVE_ELECTION("E1013" , "Already election activated"),
-    ALREADY_DEACTIVATE_ELECTION("E1013" , "Already election deactivated");
+    ALREADY_ACTIVE_ELECTION("E1014" , "Already election activated"),
+    ALREADY_DEACTIVATE_ELECTION("E1014" , "Already election deactivated"),
+
+//    Candidate nomination
+    PARTY_NOT_NOMINATED("E1015" , "Party not valid");
 
     private final String statusCode;
     private final String statusDescription;
