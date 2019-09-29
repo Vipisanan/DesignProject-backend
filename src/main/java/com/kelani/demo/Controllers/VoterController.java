@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("voter")
 @CrossOrigin(origins = "*")
 public class VoterController {
-    private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(VoterController.class);
+        private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(VoterController.class);
 
     @Autowired
     private VoterService voterService;

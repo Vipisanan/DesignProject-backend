@@ -1,5 +1,7 @@
 package com.kelani.demo.Models;
 
+import net.bytebuddy.implementation.bind.MethodDelegationBinder;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,9 @@ public class CandidateModel {
     private String no;
 
     private String pno;
+
+    @Column(unique = true)
+    private String voterId;
 
     private boolean active;
 
@@ -73,15 +78,13 @@ public class CandidateModel {
         this.active = active;
     }
 
-    @Override
-    public String toString() {
-        return "CandidateModel{" +
-                "id=" + id +
-                ", partyModel=" + partyModel +
-                ", name='" + name + '\'' +
-                ", no='" + no + '\'' +
-                ", pno='" + pno + '\'' +
-                ", active=" + active +
-                '}';
+    public String getVoterId() {
+        return voterId;
     }
+
+    public void setVoterId(String voterId) {
+        this.voterId = voterId;
+    }
+
+
 }

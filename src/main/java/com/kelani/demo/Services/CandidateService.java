@@ -43,7 +43,10 @@ public class CandidateService {
         candidateModel.setNo(dao.getNo());
 
 //        if voter id is available can be continue
+//        but one time allow
+//        TO DO save voter id as a uniq value
         if (voterRepository.findFirstByVoterId(dao.getVoterId()) !=null){
+            candidateModel.setVoterId(dao.getVoterId());
             try {
                 candidateModel.setPartyModel(partyRepository.findFirstById(dao.getPartyModelId()));
                 candidateRepository.save(candidateModel);
