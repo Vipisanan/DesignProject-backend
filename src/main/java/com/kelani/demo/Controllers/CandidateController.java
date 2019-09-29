@@ -49,4 +49,10 @@ public class CandidateController {
         return new ResponseEntity<>(new ApiResponse<>(candidateService.getAllNominatedCandidate()), HttpStatus.OK);
     }
 
+//    generate the candidate no
+    @GetMapping("generate-no")
+    public ResponseEntity<?> generateCandidateNo() throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(candidateService.generateCandidateNo()), HttpStatus.OK);
+    }
+
 }

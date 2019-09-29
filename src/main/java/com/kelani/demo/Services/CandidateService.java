@@ -122,4 +122,28 @@ public class CandidateService {
         }
         return nominatedCandidateModels;
     }
+
+    public List<NominatedCandidateModel> generateCandidateNo() throws AGException {
+        List<NominatedCandidateModel> nominatedCandidateModels;
+
+        try {
+            nominatedCandidateModels = nominatedCandidateRepository.findAll();
+//        to do for set candidate no here
+            for(int i=0 ; i<nominatedCandidateModels.size() ; i++){
+                NominatedCandidateModel nominatedCandidateModel;
+                nominatedCandidateModel = nominatedCandidateRepository.findFirstById(nominatedCandidateModels.get(i).getId());
+                if (nominatedCandidateModel.getCandidateModel().getNo() == null){
+                    CandidateModel candidateModel=candidateRepository.findFirstById(nominatedCandidateModel.getCandidateModel().getId());
+                    candidateModel.setNo(Integer.toString(i+1));
+                    nominatedCandidateModel.setCandidateModel(candidateModel);
+                }
+                nominatedCandidateRepository.save(nominatedCandidateModel);
+            }
+        }catch (Exception e){
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+        return nominatedCandidateModels;
+
+    }
 }
