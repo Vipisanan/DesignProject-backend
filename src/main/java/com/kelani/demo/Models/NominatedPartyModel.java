@@ -14,7 +14,7 @@ public class NominatedPartyModel {
     @Column(name = "nominated_party_id")
     private String id;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "election_id")
     private ElectionModel electionModel;
 
