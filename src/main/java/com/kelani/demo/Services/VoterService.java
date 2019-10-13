@@ -8,6 +8,7 @@ import com.kelani.demo.Repository.VoterRepository;
 import com.kelani.demo.exceptions.AGException;
 import com.kelani.demo.exceptions.AGStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -26,6 +27,8 @@ public class VoterService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     public List<VoterModel> getAllVoter() {
@@ -42,7 +45,7 @@ public class VoterService {
             LOGGER.error(AGStatus.NO_ENTRY_FOUND.getStatusDescription() +"for this id: "+ userId);
             throw new AGException(AGStatus.NO_ENTRY_FOUND);
         }
-        voterModel.setPassword("12345");
+        voterModel.setPassword(passwordEncoder.encode("password"));
         voterModel.setActiveVoter(true);
         try{
             voterRepository.save(voterModel);

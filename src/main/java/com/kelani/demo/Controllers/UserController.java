@@ -6,7 +6,7 @@ import com.kelani.demo.Models.UserTypeModel;
 import com.kelani.demo.Payload.ApiResponse;
 import com.kelani.demo.Repository.GSDivisionRepository;
 import com.kelani.demo.Repository.UserTypeRepository;
-import com.kelani.demo.Services.UserService;
+import com.kelani.demo.Services.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ import java.util.Set;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private ServiceUser userService;
     @Autowired
     private GSDivisionRepository gsDivisionRepository;
 
