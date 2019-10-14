@@ -36,7 +36,6 @@ public class UserController {
     @PostMapping("/")
     private ResponseEntity<?> save(@RequestBody UserModel userModel) throws Exception {
 //        when save user(voter) add default role as a Voter
-
         return new ResponseEntity<>(new ApiResponse<>(userService.save(userModel)), HttpStatus.OK);
     }
 
@@ -51,8 +50,10 @@ public class UserController {
         userModel.setNicNo(dao.getNicNo());
         userModel.setImageUrl(dao.getImageUrl());
         userModel.setGsDivisionModel(gsDivisionRepository.findFirstById(dao.getGsDivisionId()));
+
         Set<UserTypeModel> userTypeModels = userModel.getUserTypeModels();
         userTypeModels.add(userTypeRepository.findFirstById(dao.getUserType()));
+
         userService.save(userModel);
         return new ResponseEntity<>(new ApiResponse<>(userModel) , HttpStatus.OK);
 

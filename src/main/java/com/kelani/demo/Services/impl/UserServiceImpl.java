@@ -36,9 +36,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public UserDetails loadUserByUsername(String voterId) throws UsernameNotFoundException {
         VoterModel user = voterRepository.findFirstByVoterId(voterId);
-        System.out.println("**********************************");
-        System.out.println(voterId);
-        System.out.println("**********************************");
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
@@ -46,6 +43,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     private List<SimpleGrantedAuthority> getAuthority() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 }

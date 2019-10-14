@@ -11,8 +11,6 @@ public class UserTypeModel {
 
     private String type;
 
-
-
     public UserTypeModel() {
     }
 

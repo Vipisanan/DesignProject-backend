@@ -26,6 +26,7 @@ public class VoterController {
         return new ResponseEntity<>(new ApiResponse<>(voterService.getAllVoter()) , HttpStatus.OK);
     }
 
+//    promote to voter from user
     @GetMapping("{id}")
     public ResponseEntity<?> addVoter(@PathVariable("id") int id) throws AGException {
         LOGGER.info("Called add voter method in VoterController with this userId" + id);

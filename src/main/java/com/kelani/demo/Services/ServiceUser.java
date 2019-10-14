@@ -35,23 +35,23 @@ public class ServiceUser {
         UserDAO detailsDAO = new UserDAO();
         List<UserModel> model = new ArrayList<>();
         model = userRepository.findAll();
-        for (int i=0; i<model.size(); i++){
+        for (int i = 0; i < model.size(); i++) {
             dao.add(new UserDAO(model.get(i).getId(),
-                                model.get(i).getFirstName() ,
-                                model.get(i).getLastName() ,
-                                model.get(i).getImageUrl() ,
-                                model.get(i).getNicNo(),
-                                model.get(i).getGsDivisionModel().getName() ));
+                    model.get(i).getFirstName(),
+                    model.get(i).getLastName(),
+                    model.get(i).getImageUrl(),
+                    model.get(i).getNicNo(),
+                    model.get(i).getGsDivisionModel().getName()));
 
         }
         return dao;
     }
 
-    public UserModel getUserById(int uId) throws  Exception{
-        UserModel userModel=new UserModel();
+    public UserModel getUserById(int uId) throws Exception {
+        UserModel userModel = new UserModel();
         try {
-            userModel=userRepository.findFirstById(uId);
-        }catch (Exception e){
+            userModel = userRepository.findFirstById(uId);
+        } catch (Exception e) {
             LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
             throw new AGException(AGStatus.DB_ERROR);
         }

@@ -1,8 +1,10 @@
 package com.kelani.demo.Services;
 
 import com.kelani.demo.Controllers.VoterController;
+import com.kelani.demo.Models.RoleModel;
 import com.kelani.demo.Models.UserModel;
 import com.kelani.demo.Models.VoterModel;
+import com.kelani.demo.Repository.RoleRepository;
 import com.kelani.demo.Repository.UserRepository;
 import com.kelani.demo.Repository.VoterRepository;
 import com.kelani.demo.exceptions.AGException;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +30,8 @@ public class VoterService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -38,23 +44,30 @@ public class VoterService {
 
     public VoterModel addVoter(int userId) throws AGException {
         LOGGER.info("called addVoter method in VoterService");
-        VoterModel voterModel=new VoterModel();
-        if (null != userRepository.findFirstById(userId)){
+        VoterModel voterModel = new VoterModel();
+        if (null != userRepository.findFirstById(userId)) {
             voterModel.setUserModel(userRepository.findFirstById(userId));
-        }else {
-            LOGGER.error(AGStatus.NO_ENTRY_FOUND.getStatusDescription() +"for this id: "+ userId);
+        } else {
+            LOGGER.error(AGStatus.NO_ENTRY_FOUND.getStatusDescription() + "for this id: " + userId);
             throw new AGException(AGStatus.NO_ENTRY_FOUND);
         }
         voterModel.setPassword(passwordEncoder.encode("password"));
+//        add default role here as USER
+        System.out.println("***************************************************");
+        Set<RoleModel> roleModelset = voterModel.getRoleModelset();
+        roleModelset.add(roleRepository.findFirstById(4));
+        voterModel.setRoleModelset(roleModelset);
+
+        System.out.println("*********************" + roleRepository.findFirstById(4) + "*******************************");
+        System.out.println("****************************************************");
         voterModel.setActiveVoter(true);
-        try{
+        try {
             voterRepository.save(voterModel);
             LOGGER.info("Added to voter List");
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             LOGGER.error(AGStatus.ALREADY_EXIST.getStatusDescription());
             throw new AGException(AGStatus.ALREADY_EXIST);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
             throw new AGException(AGStatus.DB_ERROR);
         }

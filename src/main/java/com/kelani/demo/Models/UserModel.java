@@ -23,13 +23,12 @@ public class UserModel {
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id")
             , inverseJoinColumns = @JoinColumn(name = "role_id"))
-
     private Set<UserTypeModel> userTypeModels = new HashSet<UserTypeModel>();
 
     private String firstName;
 
 
-    @Column(unique = true , nullable = false)
+    @Column(unique = true, nullable = false)
     private long nicNo;
 
 
