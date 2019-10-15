@@ -128,5 +128,15 @@ public class UserController {
         return new ResponseEntity<>(new ApiResponse<>(userService.addFingerPrint(id, fingerPrint)), HttpStatus.OK);
     }
 
+    @GetMapping("all-finger-prints")
+    public ResponseEntity<?> getAllFingerPrints() throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(userService.getAllFingerPrints()), HttpStatus.OK);
+    }
+
+//    find user by finger
+    @GetMapping("find-by-finger-print/{fingerPrint}")
+    public ResponseEntity<?> findUserByFingerPrint(@PathVariable("fingerPrint") String fingerPrint) throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(userService.findUserByFingerPrint(fingerPrint)), HttpStatus.OK);
+    }
 
 }

@@ -75,4 +75,22 @@ public class ServiceUser {
         }
         return userModel;
     }
+
+    public List<FingerPrintModel> getAllFingerPrints() {
+        return fingerPrintRepository.findAll();
+    }
+
+    public UserModel findUserByFingerPrint(String fingerPrint) {
+////        List<FingerPrintModel> fingerPrintModel =fingerPrintRepository.findAll();
+////        for (int i = 0; i <=fingerPrintModel.size() ; i++){
+////            FingerPrintModel printModel;
+////            printModel = fingerPrintModel.get(i);
+////            if (printModel.getFingerprint() == fingerPrint){
+////                return printModel.getUserModel();
+////            }
+////        }
+//        FingerPrintModel  printModel = fingerPrintRepository.findFirstById(1);
+//        return printModel.getUserModel();
+        return null;
+    }
 }

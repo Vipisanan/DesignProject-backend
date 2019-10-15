@@ -10,11 +10,13 @@ public class FingerPrintModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String fingerprint;
-
     @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
-    @JoinColumn(name = "user_id")
+    @JoinTable(name = "party_id")
     private UserModel userModel;
+
+
+    @Column(unique = true)
+    private String fingerprint;
 
     public FingerPrintModel() {
     }
@@ -27,14 +29,6 @@ public class FingerPrintModel {
         this.id = id;
     }
 
-    public String getFingerprint() {
-        return fingerprint;
-    }
-
-    public void setFingerprint(String fingerprint) {
-        this.fingerprint = fingerprint;
-    }
-
     public UserModel getUserModel() {
         return userModel;
     }
@@ -43,12 +37,11 @@ public class FingerPrintModel {
         this.userModel = userModel;
     }
 
-    @Override
-    public String toString() {
-        return "FingerPrintModel{" +
-                "id=" + id +
-                ", fingerprint='" + fingerprint + '\'' +
-                ", userModel=" + userModel +
-                '}';
+    public String getFingerprint() {
+        return fingerprint;
+    }
+
+    public void setFingerprint(String fingerprint) {
+        this.fingerprint = fingerprint;
     }
 }

@@ -1,6 +1,5 @@
 package com.kelani.demo.Models;
 
-import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 
 import javax.persistence.*;
 
