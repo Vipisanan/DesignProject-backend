@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#for s3 cre
+/src/main/resources/application.yml

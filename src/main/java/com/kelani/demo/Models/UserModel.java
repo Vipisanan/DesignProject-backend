@@ -107,4 +107,27 @@ public class UserModel {
         this.nicNo = nicNo;
     }
 
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "id=" + id +
+                ", gsDivisionModel=" + gsDivisionModel +
+                ", userTypeModels=" + userTypeModels +
+                ", firstName='" + firstName + '\'' +
+                ", nicNo=" + nicNo +
+                ", lastName='" + lastName + '\'' +
+                ", specificDetails='" + specificDetails + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
+
+    public boolean validEmpty() {
+        return !this.firstName.equals("")
+                && !this.lastName.equals("")
+                && !this.gsDivisionModel.equals("")
+                && !this.userTypeModels.equals("")
+                && !this.specificDetails.equals("");
+
+    }
+
 }
