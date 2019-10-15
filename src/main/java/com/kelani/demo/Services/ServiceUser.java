@@ -1,7 +1,9 @@
 package com.kelani.demo.Services;
 
 import com.kelani.demo.DAO.UserDAO;
+import com.kelani.demo.Models.FingerPrintModel;
 import com.kelani.demo.Models.UserModel;
+import com.kelani.demo.Repository.FingerPrintRepository;
 import com.kelani.demo.Repository.UserRepository;
 import com.kelani.demo.exceptions.AGException;
 import com.kelani.demo.exceptions.AGStatus;
@@ -20,6 +22,8 @@ public class ServiceUser {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private FingerPrintRepository fingerPrintRepository;
 
     public List<UserModel> findAll() {
         return userRepository.findAll();
@@ -51,6 +55,20 @@ public class ServiceUser {
         UserModel userModel = new UserModel();
         try {
             userModel = userRepository.findFirstById(uId);
+        } catch (Exception e) {
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+        return userModel;
+    }
+
+    public UserModel addFingerPrint(int id , String fingerPrint) throws AGException {
+        UserModel userModel =userRepository.findFirstById(id);
+        FingerPrintModel fingerPrintModel = new FingerPrintModel();
+        fingerPrintModel.setFingerprint(fingerPrint);
+        fingerPrintModel.setUserModel(userModel);
+        try {
+           fingerPrintRepository.save(fingerPrintModel);
         } catch (Exception e) {
             LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
             throw new AGException(AGStatus.DB_ERROR);

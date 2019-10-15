@@ -27,8 +27,8 @@ import java.util.Set;
 public class UserController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-
     private AmazonClient amazonClient;
+
     public UserController(AmazonClient amazonClient) {
         this.amazonClient = amazonClient;
     }
@@ -100,7 +100,7 @@ public class UserController {
         }
         try {
             imageUrl = this.amazonClient.uploadFile(multipartFile);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOGGER.warn(AGStatus.AWS_ERROR.getStatusDescription());
             throw new AGException(AGStatus.AWS_ERROR);
         }
@@ -120,6 +120,12 @@ public class UserController {
     @GetMapping("{id}")
     public ResponseEntity<?> getUserById(@PathVariable("id") int id) throws Exception {
         return new ResponseEntity<>(new ApiResponse<>(userService.getUserById(id)), HttpStatus.OK);
+    }
+
+    @PostMapping("add-finger-print/{id}/{fingerPrint}")
+    public ResponseEntity<?> addFingerPrint(@PathVariable("id") int id,
+                                            @PathVariable("fingerPrint") String fingerPrint) throws Exception {
+        return new ResponseEntity<>(new ApiResponse<>(userService.addFingerPrint(id, fingerPrint)), HttpStatus.OK);
     }
 
 

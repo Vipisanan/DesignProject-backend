@@ -89,7 +89,7 @@ public class PartyService {
 //        get election model and Party model then save
         NominatedPartyModel nominatedPartyModel = new NominatedPartyModel();
 
-        LOGGER.info("election id     "+ i +  "party id"+ s );
+        LOGGER.info("election id     " + i + "party id" + s);
 
         try {
             ElectionModel electionModel = electionRepository.findFirstById(i);
