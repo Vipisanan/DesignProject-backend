@@ -31,4 +31,4 @@ build/
 .vscode/
 
 #for s3 cre
-/src/main/resources/application.yml
+src/main/resources/application.yml
