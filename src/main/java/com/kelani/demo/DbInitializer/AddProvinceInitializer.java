@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(2)
 @ConditionalOnProperty(name = "app.init-province-db", havingValue = "true")
-
 public class AddProvinceInitializer implements CommandLineRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddProvinceInitializer.class);
 

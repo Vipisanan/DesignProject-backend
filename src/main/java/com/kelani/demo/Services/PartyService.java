@@ -65,6 +65,16 @@ public class PartyService {
         return model;
     }
 
+    public PartyModel savePartyWidImage(PartyModel partyModel) throws AGException {
+        try {
+            partyRepository.save(partyModel);
+        } catch (Exception e) {
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+        return partyModel;
+    }
+
     public List<PartyColourModel> getPartyColor() throws AGException {
         try {
             partyColourRepository.findAll();

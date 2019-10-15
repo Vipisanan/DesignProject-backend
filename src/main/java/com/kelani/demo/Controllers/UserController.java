@@ -78,7 +78,7 @@ public class UserController {
                                                  @RequestParam(value = "nicNo") int nicNo,
                                                  @RequestParam(value = "specificDetails") String specificDetails,
                                                  @RequestParam(value = "gsDivisionId") int gsDivisionId,
-                                                 @RequestParam(value = "userType") int userType,
+
                                                  @RequestPart(value = "image") MultipartFile multipartFile) throws AGException {
 
 
@@ -90,7 +90,7 @@ public class UserController {
         userModel.setGsDivisionModel(gsDivisionRepository.findFirstById(gsDivisionId));
 
         Set<UserTypeModel> userTypeModels = userModel.getUserTypeModels();
-        userTypeModels.add(userTypeRepository.findFirstById(userType));
+        userTypeModels.add(userTypeRepository.findFirstById(1));
 
 
         String imageUrl;
