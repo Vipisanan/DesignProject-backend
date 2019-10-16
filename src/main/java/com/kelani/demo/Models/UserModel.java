@@ -16,7 +16,7 @@ public class UserModel {
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
-    @JoinTable(name = "gs_division_id")
+    @JoinColumn(name = "gs_division_id")
     private GSDivisionModel gsDivisionModel;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -34,7 +34,7 @@ public class ServiceUser {
         return userModel;
     }
 
-    public List<UserDAO> findAllUser() {
+    public List<UserModel> findAllUser() {
         List<UserDAO> dao = new ArrayList<>();
         UserDAO detailsDAO = new UserDAO();
         List<UserModel> model = new ArrayList<>();
@@ -48,7 +48,7 @@ public class ServiceUser {
                     model.get(i).getGsDivisionModel().getName()));
 
         }
-        return dao;
+        return userRepository.findAll();
     }
 
     public UserModel getUserById(int uId) throws Exception {
