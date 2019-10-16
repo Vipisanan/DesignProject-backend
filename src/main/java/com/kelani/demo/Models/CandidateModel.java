@@ -1,5 +1,6 @@
 package com.kelani.demo.Models;
 
+import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 
 import javax.persistence.*;
 
@@ -11,8 +12,10 @@ public class CandidateModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
+//    this is the correct way ManyToOne relation
     @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
-    @JoinTable(name = "party_id")
+    @JoinColumn(name = "party_id")
     private PartyModel partyModel;
 
     private String name;

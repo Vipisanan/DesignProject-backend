@@ -44,7 +44,7 @@ public class CandidateService {
 
 //        if voter id is available can be continue
 //        but one time allow
-//        TO DO save voter id as a uniq value
+//        TO DO save voter id as a unique value
         if (voterRepository.findFirstByVoterId(dao.getVoterId()) !=null){
             candidateModel.setVoterId(dao.getVoterId());
             try {
@@ -58,7 +58,6 @@ public class CandidateService {
             LOGGER.error(AGStatus.NO_VOTER_FOUND.getStatusDescription());
             throw new AGException(AGStatus.NO_VOTER_FOUND);
         }
-
         return candidateModel;
     }
 
