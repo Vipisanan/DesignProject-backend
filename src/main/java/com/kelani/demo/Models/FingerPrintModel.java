@@ -11,7 +11,7 @@ public class FingerPrintModel {
     private int id;
 
     @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
-    @JoinTable(name = "party_id")
+    @JoinColumn(name = "user_id")
     private UserModel userModel;
 
 

@@ -81,7 +81,8 @@ public class ServiceUser {
     }
 
     public UserModel findUserByFingerPrint(String fingerPrint) {
-////        List<FingerPrintModel> fingerPrintModel =fingerPrintRepository.findAll();
+//        List<FingerPrintModel> fingerPrintModel =fingerPrintRepository.findAll();
+        FingerPrintModel printModel = fingerPrintRepository.findByFingerprint(fingerPrint);
 ////        for (int i = 0; i <=fingerPrintModel.size() ; i++){
 ////            FingerPrintModel printModel;
 ////            printModel = fingerPrintModel.get(i);
@@ -91,6 +92,6 @@ public class ServiceUser {
 ////        }
 //        FingerPrintModel  printModel = fingerPrintRepository.findFirstById(1);
 //        return printModel.getUserModel();
-        return null;
+        return printModel.getUserModel();
     }
 }
