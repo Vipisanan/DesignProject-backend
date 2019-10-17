@@ -3,8 +3,10 @@ package com.kelani.demo.Services;
 import com.kelani.demo.DAO.UserDAO;
 import com.kelani.demo.Models.FingerPrintModel;
 import com.kelani.demo.Models.UserModel;
+import com.kelani.demo.Models.VoterModel;
 import com.kelani.demo.Repository.FingerPrintRepository;
 import com.kelani.demo.Repository.UserRepository;
+import com.kelani.demo.Repository.VoterRepository;
 import com.kelani.demo.exceptions.AGException;
 import com.kelani.demo.exceptions.AGStatus;
 import org.slf4j.Logger;
@@ -24,6 +26,8 @@ public class ServiceUser {
     private UserRepository userRepository;
     @Autowired
     private FingerPrintRepository fingerPrintRepository;
+    @Autowired
+    private VoterRepository voterRepository;
 
     public List<UserModel> findAll() {
         return userRepository.findAll();
@@ -62,13 +66,13 @@ public class ServiceUser {
         return userModel;
     }
 
-    public UserModel addFingerPrint(int id , String fingerPrint) throws AGException {
-        UserModel userModel =userRepository.findFirstById(id);
+    public UserModel addFingerPrint(int id, String fingerPrint) throws AGException {
+        UserModel userModel = userRepository.findFirstById(id);
         FingerPrintModel fingerPrintModel = new FingerPrintModel();
         fingerPrintModel.setFingerprint(fingerPrint);
         fingerPrintModel.setUserModel(userModel);
         try {
-           fingerPrintRepository.save(fingerPrintModel);
+            fingerPrintRepository.save(fingerPrintModel);
         } catch (Exception e) {
             LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
             throw new AGException(AGStatus.DB_ERROR);
@@ -80,18 +84,32 @@ public class ServiceUser {
         return fingerPrintRepository.findAll();
     }
 
-    public UserModel findUserByFingerPrint(String fingerPrint) {
-//        List<FingerPrintModel> fingerPrintModel =fingerPrintRepository.findAll();
-        FingerPrintModel printModel = fingerPrintRepository.findByFingerprint(fingerPrint);
-////        for (int i = 0; i <=fingerPrintModel.size() ; i++){
-////            FingerPrintModel printModel;
-////            printModel = fingerPrintModel.get(i);
-////            if (printModel.getFingerprint() == fingerPrint){
-////                return printModel.getUserModel();
-////            }
-////        }
-//        FingerPrintModel  printModel = fingerPrintRepository.findFirstById(1);
-//        return printModel.getUserModel();
-        return printModel.getUserModel();
+    public String findUserByFingerPrint(String fingerPrint) throws AGException {
+        FingerPrintModel printModel = new FingerPrintModel();
+        VoterModel voterModel;
+        UserModel userModel;
+        try {
+            printModel = fingerPrintRepository.findByFingerprint(fingerPrint);
+            userModel = printModel.getUserModel();
+        } catch (NullPointerException e) {
+            LOGGER.error(AGStatus.NO_USER_FOUND.getStatusDescription());
+            throw new AGException(AGStatus.NO_USER_FOUND);
+        } catch (Exception e) {
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+
+        try {
+            voterModel = voterRepository.findFirstByUserModel(userModel);
+
+        } catch (NullPointerException e) {
+            LOGGER.error(AGStatus.NO_VOTER_FOUND.getStatusDescription());
+            throw new AGException(AGStatus.NO_VOTER_FOUND);
+        } catch (Exception e) {
+            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+            throw new AGException(AGStatus.DB_ERROR);
+        }
+
+        return voterModel.getVoterId();
     }
 }
