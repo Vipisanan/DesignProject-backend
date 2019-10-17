@@ -30,7 +30,11 @@ public class ElectionService {
             electionTypeModel=electionTypeRepository.findFirstById(id);
             electionModel.setElectionTypeModel(electionTypeModel);
             electionRepository.save(electionModel);
-        }catch (Exception e){
+        }catch (NullPointerException e){
+            LOGGER.error(AGStatus.NO_ENTRY_FOUND.getStatusDescription());
+            throw new AGException(AGStatus.NO_ENTRY_FOUND);
+        }
+        catch (Exception e){
             LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
             throw new AGException(AGStatus.DB_ERROR);
         }

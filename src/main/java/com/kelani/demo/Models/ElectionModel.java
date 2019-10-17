@@ -12,7 +12,7 @@ public class ElectionModel {
     private int id;
 
     @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL, optional = false)
-    @JoinTable(name = "type_id")
+    @JoinColumn(name = "type_id")
     private ElectionTypeModel electionTypeModel;
 
     private boolean active;

@@ -1,6 +1,5 @@
 package com.kelani.demo.Services;
 
-import com.kelani.demo.Controllers.PartyController;
 import com.kelani.demo.DAO.PartyDAO;
 import com.kelani.demo.Models.ElectionModel;
 import com.kelani.demo.Models.NominatedPartyModel;
@@ -17,13 +16,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.image.DirectColorModel;
-import java.awt.image.PackedColorModel;
 import java.util.List;
 
 @Service
 public class PartyService {
-    private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(PartyService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PartyService.class);
 
     @Autowired
     private PartyRepository partyRepository;
