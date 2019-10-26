@@ -88,6 +88,7 @@ public class UserController {
         userModel.setNicNo(nicNo);
         userModel.setSpecificDetails(specificDetails);
         userModel.setGsDivisionModel(gsDivisionRepository.findFirstById(gsDivisionId));
+        userModel.setVoter(false);
 
         Set<UserTypeModel> userTypeModels = userModel.getUserTypeModels();
         userTypeModels.add(userTypeRepository.findFirstById(1));

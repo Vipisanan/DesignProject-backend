@@ -46,6 +46,9 @@ public class VoterService {
         LOGGER.info("called addVoter method in VoterService");
         VoterModel voterModel = new VoterModel();
         if (null != userRepository.findFirstById(userId)) {
+            UserModel userModel=userRepository.findFirstById(userId);
+            userModel.setVoter(true);
+            userRepository.save(userModel);
             voterModel.setUserModel(userRepository.findFirstById(userId));
         } else {
             LOGGER.error(AGStatus.NO_ENTRY_FOUND.getStatusDescription() + "for this id: " + userId);
@@ -53,13 +56,10 @@ public class VoterService {
         }
         voterModel.setPassword(passwordEncoder.encode("password"));
 //        add default role here as USER
-        System.out.println("***************************************************");
         Set<RoleModel> roleModelset = voterModel.getRoleModelset();
         roleModelset.add(roleRepository.findFirstById(4));
         voterModel.setRoleModelset(roleModelset);
 
-        System.out.println("*********************" + roleRepository.findFirstById(4) + "*******************************");
-        System.out.println("****************************************************");
         voterModel.setActiveVoter(true);
         try {
             voterRepository.save(voterModel);

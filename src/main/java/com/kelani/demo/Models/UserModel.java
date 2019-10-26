@@ -38,6 +38,8 @@ public class UserModel {
 
     private String imageUrl;
 
+    private boolean isVoter;
+
 
     public UserModel() {
     }
@@ -105,6 +107,14 @@ public class UserModel {
 
     public void setNicNo(long nicNo) {
         this.nicNo = nicNo;
+    }
+
+    public boolean isVoter() {
+        return isVoter;
+    }
+
+    public void setVoter(boolean voter) {
+        isVoter = voter;
     }
 
     @Override
