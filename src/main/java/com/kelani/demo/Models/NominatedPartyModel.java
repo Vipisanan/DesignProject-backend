@@ -22,6 +22,10 @@ public class NominatedPartyModel {
     @JoinColumn(name = "party_id")
     private PartyModel partyModel;
 
+    @ManyToOne
+    @JoinColumn(name = "election_result_id")
+    private ElectionResultModel electionResultModel;
+
     private boolean isActive;
 
     public NominatedPartyModel() {
@@ -57,5 +61,13 @@ public class NominatedPartyModel {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public ElectionResultModel getElectionResultModel() {
+        return electionResultModel;
+    }
+
+    public void setElectionResultModel(ElectionResultModel electionResultModel) {
+        this.electionResultModel = electionResultModel;
     }
 }
