@@ -18,9 +18,6 @@ public class NominatedCandidateModel {
     @JoinColumn(name = "candidate_id")
     private CandidateModel candidateModel;
 
-    @ManyToOne
-    @JoinColumn(name = "election_result_id")
-    private ElectionResultModel electionResultModel;
 
     public NominatedCandidateModel() {
     }

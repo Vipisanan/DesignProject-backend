@@ -17,10 +17,9 @@ public class ElectionResultModel {
     @JoinColumn(name = "voter_id")
     private VoterModel voterModel;
 
-    @OneToMany(mappedBy = "electionResultModel", cascade = CascadeType.ALL)
-    private Set<NominatedPartyModel> nominatedPartyModels;
 
-    @OneToMany(mappedBy = "electionResultModel", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "election_result_id")
     private Set<NominatedCandidateModel> nominatedCandidateModels  = new HashSet<>();
 
     public ElectionResultModel() {
@@ -40,14 +39,6 @@ public class ElectionResultModel {
 
     public void setVoterModel(VoterModel voterModel) {
         this.voterModel = voterModel;
-    }
-
-    public Set<NominatedPartyModel> getNominatedPartyModels() {
-        return nominatedPartyModels;
-    }
-
-    public void setNominatedPartyModels(Set<NominatedPartyModel> nominatedPartyModels) {
-        this.nominatedPartyModels = nominatedPartyModels;
     }
 
     public Set<NominatedCandidateModel> getNominatedCandidateModels() {

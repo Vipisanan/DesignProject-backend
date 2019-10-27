@@ -27,15 +27,21 @@ public class ResultController {
     }
 
 
-//    grtNominatedPartyId
     @GetMapping("/voter/{vId}")
     private ResponseEntity<?> addVote(@PathVariable(name = "vId") String vId  ,
                                       @RequestParam("cId") int[] candidateId ,
                                       @RequestParam("pId") String[] nomiPartyId) throws AGException {
 
         LOGGER.info(vId);
-//        return new ResponseEntity<>(new ApiResponse<>(candidateId) , HttpStatus.OK);
             return new ResponseEntity<>(new ApiResponse<>(resultService.addVote(candidateId , nomiPartyId , vId)) , HttpStatus.OK);
     }
+
+//    get result by part count
+//    @GetMapping("party")
+//    private ApiResponse<?> partyCount(){
+//        return new ApiResponse<>(resultService.partyCount());
+//    }
+
+
 
 }

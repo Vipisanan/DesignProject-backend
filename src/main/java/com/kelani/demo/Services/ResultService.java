@@ -2,7 +2,6 @@ package com.kelani.demo.Services;
 
 import com.kelani.demo.Models.ElectionResultModel;
 import com.kelani.demo.Models.NominatedCandidateModel;
-import com.kelani.demo.Models.NominatedPartyModel;
 import com.kelani.demo.Models.VoterModel;
 import com.kelani.demo.Repository.ElectionResultRepository;
 import com.kelani.demo.Repository.NominatedCandidateRepository;
@@ -39,23 +38,22 @@ public class ResultService {
         return electionResultRepository.findAll();
     }
 
-    public ElectionResultModel addVote(int[] cId, String[] partyId , String voterId) throws AGException {
+    public ElectionResultModel addVote(int[] cId, String[] partyId, String voterId) throws AGException {
 
         ElectionResultModel electionResultModel = new ElectionResultModel();
-        Set<NominatedPartyModel> nominatedPartyModel = new HashSet<>();
-        Set<NominatedCandidateModel> nominatedCandidateModels = new HashSet<>();
+        Set<NominatedCandidateModel> nominatedCandidateModels = electionResultModel.getNominatedCandidateModels();
         VoterModel voterModel;
         try {
             voterModel = voterRepository.findFirstByVoterId(voterId);
             for (int i = 0; i < cId.length; i++) {
-                nominatedCandidateModels.add(nominatedCandidateRepository.findFirstById(cId[1]));
+                LOGGER.info(String.valueOf(cId[i]));
+                nominatedCandidateModels.add(nominatedCandidateRepository.findFirstById(cId[i]));
             }
-            for (int i = 0; i < partyId.length; i++) {
-                nominatedPartyModel.add(nominatedPartyRepository.findFirstById(partyId[i]));
-            }
+
+//            nominatedCandidateModels.add(nominatedCandidateRepository.findFirstById(1));
             electionResultModel.setVoterModel(voterModel);
             electionResultModel.setNominatedCandidateModels(nominatedCandidateModels);
-            electionResultModel.setNominatedPartyModels(nominatedPartyModel);
+
             electionResultRepository.save(electionResultModel);
         } catch (Exception e) {
             LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
@@ -63,4 +61,15 @@ public class ResultService {
         }
         return electionResultModel;
     }
+
+//    public ResultByPartyDAO partyCount() throws AGException {
+//        List<ElectionResultModel> electionResultModel = electionResultRepository.findAll();
+//        try {
+//
+//        }catch (Exception e){
+//            LOGGER.error(AGStatus.DB_ERROR.getStatusDescription());
+//            throw new AGException(AGStatus.DB_ERROR);
+//        }
+//        return null;
+//    }
 }
