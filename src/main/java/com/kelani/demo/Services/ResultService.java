@@ -11,8 +11,10 @@ import com.kelani.demo.Repository.NominatedPartyRepository;
 import com.kelani.demo.Repository.VoterRepository;
 import com.kelani.demo.exceptions.AGException;
 import com.kelani.demo.exceptions.AGStatus;
+import org.codehaus.jackson.map.util.BeanUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,28 +41,27 @@ public class ResultService {
 
     public List<AllResultDAO> getAllResult() {
         List<ElectionResultModel> electionResultModels = electionResultRepository.findAll();
-        List<AllResultDAO> allResultDAO = new ArrayList<AllResultDAO>();
-        AllResultDAO allResultDAO1=new AllResultDAO();
-        Set<String> partyId =new HashSet<String>();
-        Set<String> voterId =new HashSet<String>();
+        List<AllResultDAO> allResultDAO  = new ArrayList<AllResultDAO>();
+        AllResultDAO allResultDAO1 = new AllResultDAO();
+        Set<String> partyId = new HashSet<String>();
         Set<Integer> candidateId = new HashSet<Integer>();
-        for (int i = 0; i < electionResultModels.size(); i++) {
-//            voterId.add(electionResultModels.get(i).getVoterModel().getVoterId());
-//                allResultDAO.get(i).setVoterId(electionResultModels.get(i).getVoterModel().getVoterId());
-            allResultDAO1.setVoterId(electionResultModels.get(i).getVoterModel().getVoterId());
-                for (int j=0; j<electionResultModels.get(i).getNominatedCandidateModels().size(); j++){
-                    List<NominatedCandidateModel> nominatedCandidateModels =new ArrayList<NominatedCandidateModel>();
-                    nominatedCandidateModels.addAll(electionResultModels.get(i).getNominatedCandidateModels());
+//        for (int i = 0; i < electionResultModels.size(); i++) {
+//            allResultDAO1.setVoterId(electionResultModels.get(i).getVoterModel().getVoterId());
+//            for (int j = 0; j < electionResultModels.get(i).getNominatedCandidateModels().size(); j++) {
+//                List<NominatedCandidateModel> nominatedCandidateModels = new ArrayList<NominatedCandidateModel>();
+//                nominatedCandidateModels.addAll(electionResultModels.get(i).getNominatedCandidateModels());
+//
+//                candidateId.add(nominatedCandidateModels.get(j).getCandidateModel().getId());
+//                partyId.add(nominatedCandidateModels.get(j).getNominatedPartyModel().getId());
+//            }
+//            allResultDAO1.setCandidateId(candidateId);
+//            allResultDAO1.setPartyId(partyId);
+//            allResultDAO.add(i, allResultDAO1);
+//            allResultDAO.set(i ,allResultDAO1);
+//            BeanUtils.copyProperties(allResultDAO , electionResultModels);
+//        }
+        BeanUtils.copyProperties(electionResultModels,allResultDAO);
 
-                    candidateId.add(nominatedCandidateModels.get(j).getCandidateModel().getId());
-                    partyId.add(nominatedCandidateModels.get(j).getNominatedPartyModel().getId());
-                }
-                allResultDAO1.setCandidateId(candidateId);
-                allResultDAO1.setPartyId(partyId);
-                allResultDAO.add(allResultDAO1);
-//                allResultDAO.get(i).setCandidateId(candidateId);
-//                allResultDAO.get(i).setPartyId(partyId);
-        }
         return allResultDAO;
     }
 
@@ -72,11 +73,12 @@ public class ResultService {
         try {
             voterModel = voterRepository.findFirstByVoterId(voterId);
             for (int i = 0; i < cId.length; i++) {
-                LOGGER.info(String.valueOf(cId[i]));
+                LOGGER.info(String.valueOf(cId[i + 1]));
+                LOGGER.info(cId.length + "/t length");
                 nominatedCandidateModels.add(nominatedCandidateRepository.findFirstById(cId[i]));
+                LOGGER.info(nominatedCandidateModels + "/t nominatedCandidateModels");
             }
 
-//            nominatedCandidateModels.add(nominatedCandidateRepository.findFirstById(1));
             electionResultModel.setVoterModel(voterModel);
             electionResultModel.setNominatedCandidateModels(nominatedCandidateModels);
 
@@ -99,4 +101,10 @@ public class ResultService {
         }
         return null;
     }
+
+    public List<ElectionResultModel> getFullResult() {
+        return electionResultRepository.findAll();
+    }
+
+
 }

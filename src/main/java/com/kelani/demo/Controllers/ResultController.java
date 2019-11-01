@@ -25,6 +25,11 @@ public class ResultController {
     private ResponseEntity<?> getAllResult() {
         return new ResponseEntity<>(new ApiResponse<>(resultService.getAllResult()), HttpStatus.OK);
     }
+    @GetMapping("/all")
+    private ResponseEntity<?> getFullResult() {
+        return new ResponseEntity<>(new ApiResponse<>(resultService.getFullResult()), HttpStatus.OK);
+    }
+
 
 
     @GetMapping("/voter/{vId}")
@@ -35,13 +40,6 @@ public class ResultController {
         LOGGER.info(vId);
             return new ResponseEntity<>(new ApiResponse<>(resultService.addVote(candidateId , nomiPartyId , vId)) , HttpStatus.OK);
     }
-
-//    get result by part count
-//    @GetMapping("party")
-//    private ApiResponse<?> partyCount(){
-//        return new ApiResponse<>(resultService.partyCount());
-//    }
-
 
 
 }
