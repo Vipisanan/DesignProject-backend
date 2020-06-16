@@ -4,6 +4,7 @@ import com.kelani.demo.DAO.CandidateModelDAO;
 import com.kelani.demo.Models.CandidateModel;
 import com.kelani.demo.Payload.ApiResponse;
 import com.kelani.demo.Services.CandidateService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("candidate")
 @CrossOrigin(origins = "*")
+@Api(value = "microservice", description = "CandidateController")
 public class CandidateController {
 
     @Autowired
